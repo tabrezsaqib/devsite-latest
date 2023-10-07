@@ -285,7 +285,7 @@ const SideNavContent = ({
                 />
               </div>
             ))}
-            {key == "flower_colour" ? <span>&nbsp;&nbsp;</span> : <span></span>}
+            {key == "flower_colour" || 'fruit_color'? <span>&nbsp;&nbsp;</span> : <span></span>}
             {api.capitalizeFirstLetter(data==='Fern'? 'Fern/Fern Ally':data ==='Non-woody'?'Non-woody (not Fern or Grass)': data)}
           </label>
         </div>
