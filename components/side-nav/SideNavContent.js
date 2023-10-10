@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import { useDispatch } from "react-redux"
 import { useRouter } from "next/router"
 import SideNavPopover from "./SideNavPopover"
-import React, {useState} from "react"
+import React, { useState } from "react"
 
 const SideNavContent = ({
   options,
@@ -40,7 +40,7 @@ const SideNavContent = ({
   triggerToolTip,
 }) => {
   const router = useRouter()
-  console.log(options,flower_colour, type)
+  // console.log(options,flower_colour, type)
   const optionNames = [
     {
       key: "plant_type",
@@ -119,13 +119,13 @@ const SideNavContent = ({
     },
     {
       key: "spore_under_leaf",
-      group: (router.query.type == "Fern" || plant_type[0] === true) && "spores",
+      group: ((router.query.type == "Fern" || plant_type[0] === true) && (spore_location[2] === true)) && "spores",
       value: "Spore Underside of Leaf",
     },
     {
       key: "leaf_divisions",
       group:
-        (router.query.type == "Woody" || router.query.type == "Fern"|| plant_type[0] === true || plant_type[3] === true) &&
+        (router.query.type == "Woody" || router.query.type == "Fern" || plant_type[0] === true || plant_type[3] === true) &&
         "leaves",
       value: "Leaflet Divisions",
     },
@@ -211,7 +211,6 @@ const SideNavContent = ({
   const dispatch = useDispatch()
   const getOption = (key) => {
     const option = options[key].map((data, index) => {
-      console.log("data",data)
       return (
         <div className="form-check" key={index}>
           <input
@@ -226,48 +225,48 @@ const SideNavContent = ({
               key == "leaf_arrangement"
                 ? leaf_arrangement[index]
                 : key == "leaf_type"
-                ? leaf_type[index]
-                : key == "habitat"
-                ? habitat[index]
-                : key == "plant_type"
-                ? plant_type[index]
-                : key == "type"
-                ? type[index]
-                : key == "flower_colour"
-                ? flower_colour[index]
-                : key == "lip_shape"
-                ? lip_shape[index]
-                : key == "fruit_type"
-                ? fruit_type[index]
-                : key == "fruit_color"
-                ? fruit_color[index]
-                : key == "leaf_duration"
-                ? leaf_duration[index]
-                : key == "leaf_divisions"
-                ? leaf_divisions[index]
-                : key == "leaf_blade_edges"
-                ? leaf_blade_edges[index]
-                : key == "spore_shape"
-                ? spore_shape[index]
-                : key == "spore_location"
-                ? spore_location[index]
-                : key == "spore_covering"
-                ? spore_covering[index]
-                : key == "spore_under_leaf"
-                ? spore_under_leaf[index]
-                : // : key == "native_or_introduced_or_invasive"
-                // ? native_or_introduced_or_invasive[index]
-                key == "leaf_shape"
-                ? leaf_shape[index]
-                : key == "stems"
-                ? stems[index]
-                : key == "growth_form"
-                ? growth_form[index]
-                : key == "petal_symmetry"
-                ? petal_symmetry[index]
-                : key == "inflorescence"
-                ? inflorescence[index]
-                : false
+                  ? leaf_type[index]
+                  : key == "habitat"
+                    ? habitat[index]
+                    : key == "plant_type"
+                      ? plant_type[index]
+                      : key == "type"
+                        ? type[index]
+                        : key == "flower_colour"
+                          ? flower_colour[index]
+                          : key == "lip_shape"
+                            ? lip_shape[index]
+                            : key == "fruit_type"
+                              ? fruit_type[index]
+                              : key == "fruit_color"
+                                ? fruit_color[index]
+                                : key == "leaf_duration"
+                                  ? leaf_duration[index]
+                                  : key == "leaf_divisions"
+                                    ? leaf_divisions[index]
+                                    : key == "leaf_blade_edges"
+                                      ? leaf_blade_edges[index]
+                                      : key == "spore_shape"
+                                        ? spore_shape[index]
+                                        : key == "spore_location"
+                                          ? spore_location[index]
+                                          : key == "spore_covering"
+                                            ? spore_covering[index]
+                                            : key == "spore_under_leaf"
+                                              ? spore_under_leaf[index]
+                                              : // : key == "native_or_introduced_or_invasive"
+                                              // ? native_or_introduced_or_invasive[index]
+                                              key == "leaf_shape"
+                                                ? leaf_shape[index]
+                                                : key == "stems"
+                                                  ? stems[index]
+                                                  : key == "growth_form"
+                                                    ? growth_form[index]
+                                                    : key == "petal_symmetry"
+                                                      ? petal_symmetry[index]
+                                                      : key == "inflorescence"
+                                                        ? inflorescence[index]
+                                                        : false
             }
             onChange={(e) => handleOnChange(index, key)}
           />
@@ -276,17 +275,17 @@ const SideNavContent = ({
               <div key={index} className="color-value">
                 <img
                   src={value.color}
-                  style={{borderRadius:'7px'}}
+                  style={{ borderRadius: '7px' }}
                   className={
-                    data == value.label && (key == "flower_colour" || "fruit_color" )? "" : "hide"
+                    data == value.label && (key == "flower_colour" || "fruit_color") ? "" : "hide"
                   }
                   width="15px"
                   alt="color values"
                 />
               </div>
             ))}
-            {key == "flower_colour" || 'fruit_color'? <span>&nbsp;&nbsp;</span> : <span></span>}
-            {api.capitalizeFirstLetter(data==='Fern'? 'Fern/Fern Ally':data ==='Non-woody'?'Non-woody (not Fern or Grass)': data)}
+            {key == "flower_colour" || 'fruit_color' ? <span>&nbsp;&nbsp;</span> : <span></span>}
+            {api.capitalizeFirstLetter(data === 'Fern' ? 'Fern/Fern Ally' : data === 'Non-woody' ? 'Non-woody (not Fern or Grass)' : data)}
           </label>
         </div>
       )
@@ -304,7 +303,7 @@ const SideNavContent = ({
         {optionNames.map((item) => (
           <div key={item.key}>
             {item.group == "all" && (
-              <div  id={item.key}>
+              <div id={item.key}>
                 <h6 className="selector-heading">
                   <i className="bi bi-check2-square" />
                   &nbsp;&nbsp;
@@ -366,14 +365,14 @@ const SideNavContent = ({
                             </h6>
                             {(item.key == "inflorescence" ||
                               item.key == "petal_symmetry") && (
-                              <SideNavPopover
-                                triggerPopUp={() =>
-                                  triggerPopUp(item.key, true)
-                                }
-                                popoverData={popoverData}
-                                popoverStatus={popoverStatus}
-                              />
-                            )}
+                                <SideNavPopover
+                                  triggerPopUp={() =>
+                                    triggerPopUp(item.key, true)
+                                  }
+                                  popoverData={popoverData}
+                                  popoverStatus={popoverStatus}
+                                />
+                              )}
                           </div>
                           {item.key == "inflorescence" ? (
                             <div id="three-column" className="d-flex flex-wrap">
