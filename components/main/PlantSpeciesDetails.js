@@ -11,6 +11,7 @@ import styles from "../../styles/Global.module.scss"
 import Header from "../layouts/Header"
 import Navbar from "../layouts/Navbar"
 import Footer from "../layouts/Footer"
+import Link from "next/link"
 
 const PlantSpeciesDetails = ({ plant_details }) => {
   const [slide, setSlide] = useState(false)
@@ -333,7 +334,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     <p>
                       <strong>Plant Family: &nbsp;</strong>
                     </p>
-                    {ReactHtmlParser(plant_details.acf.plant_family)}
+                    <Link href="/families" style={{fontStyle:'italic'}}> {ReactHtmlParser(plant_details.acf.plant_family)}</Link>
                   </div>
                 )}
                 <div className="d-flex">
@@ -412,31 +413,31 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     </div>
                   )}
                   <div className="d-flex">
-                    {plant_details.acf.characteristics.habitat?
-                    plant_details.acf.characteristics.habitat.length !== 0 && (
-                      <div className="d-flex">
-                        <p>
-                          <strong>Habitat: &nbsp;</strong>
-                        </p>
-                        {plant_details.acf.characteristics.habitat.map(
-                          (item, index) => (
-                            <div className="d-flex" key={index}>
-                              <p>
-                                {api.capitalizeFirstLetter(item)}
-                                {item !==
-                                  plant_details.acf.characteristics.habitat
-                                    .slice(-1)
-                                    .pop() ? (
-                                  <span>, &nbsp;</span>
-                                ) : (
-                                  ""
-                                )}
-                              </p>
-                            </div>
-                          )
-                        )}
-                      </div>
-                    ):''}
+                    {plant_details.acf.characteristics.habitat ?
+                      plant_details.acf.characteristics.habitat.length !== 0 && (
+                        <div className="d-flex">
+                          <p>
+                            <strong>Habitat: &nbsp;</strong>
+                          </p>
+                          {plant_details.acf.characteristics.habitat.map(
+                            (item, index) => (
+                              <div className="d-flex" key={index}>
+                                <p>
+                                  {api.capitalizeFirstLetter(item)}
+                                  {item !==
+                                    plant_details.acf.characteristics.habitat
+                                      .slice(-1)
+                                      .pop() ? (
+                                    <span>, &nbsp;</span>
+                                  ) : (
+                                    ""
+                                  )}
+                                </p>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      ) : ''}
                     <span>&#x3B;&nbsp;</span>
                     {plant_details.acf.characteristics.habitat_description && (
                       <div className="d-flex">
