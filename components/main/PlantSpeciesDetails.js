@@ -874,20 +874,18 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                                   }
                                 </div>
                               )}
-                            <div className="d-flex label-value-section">
-                            </div>
-                            <div className="mb-3">
-                              {plant_details.acf.characteristics.leaf_description && (
-                                <div className="d-flex flex-column">
-                                  <p>
-                                    <strong>Leaves Description: &nbsp;</strong>
-                                  </p>
-                                  <div className="rtc-content">
-                                    {ReactHtmlParser(plant_details.acf.characteristics.leaf_description)}
-                                  </div>
+                          </div>
+                          <div className="mb-3">
+                            {plant_details.acf.characteristics.leaf_description && (
+                              <div >
+                                <p>
+                                  <strong>Leaves Description: &nbsp;</strong>
+                                </p>
+                                <div className="rtc-content">
+                                  {ReactHtmlParser(plant_details.acf.characteristics.leaf_description)}
                                 </div>
-                              )}
-                            </div>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -992,18 +990,18 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                                     </div>
                                   )
                                 )}
-                              <div className="mb-3">
-                                {plant_details.acf.characteristics.spore_description && (
-                                  <div className="d-flex flex-column">
-                                    <p>
-                                      <strong>Spore Description: &nbsp;</strong>
-                                    </p>
-                                    <div className="rtc-content">
-                                      {ReactHtmlParser(plant_details.acf.characteristics.spore_description)}
-                                    </div>
+                            </div>
+                            <div className="mb-3">
+                              {plant_details.acf.characteristics.spore_description && (
+                                <div >
+                                  <p>
+                                    <strong>Spore Description: &nbsp;</strong>
+                                  </p>
+                                  <div className="rtc-content">
+                                    {ReactHtmlParser(plant_details.acf.characteristics.spore_description)}
                                   </div>
-                                )}
-                              </div>
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
