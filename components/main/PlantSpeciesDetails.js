@@ -22,6 +22,13 @@ const PlantSpeciesDetails = ({ plant_details }) => {
     setSlide(true)
     setSlideIndex(index)
   }
+  const removeTags=(str)=> { 
+    if ((str===null) || (str==='')) 
+        return false; 
+    else
+        str = str.toString();  
+    return str.replace( /(<([^>]+)>)/ig, ''); 
+} 
 
   const back = () => {
     slideRef.current.goBack()
@@ -334,7 +341,9 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     <p>
                       <strong>Plant Family: &nbsp;</strong>
                     </p>
-                    <Link href="/plantFamilyDetails" style={{ fontStyle: 'italic' }}> {ReactHtmlParser(plant_details.acf.plant_family)}</Link>
+                    <Link href={{
+                      pathname: `/family/${removeTags(plant_details.acf.plant_family)}`
+                    }} style={{ fontStyle: 'italic' }}> {ReactHtmlParser(plant_details.acf.plant_family)}</Link>
                   </div>
                 )}
                 <div className="d-flex">
