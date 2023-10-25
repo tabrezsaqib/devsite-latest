@@ -41,14 +41,23 @@ const plantFamilyDetails = ({ plantFamily }) => {
               {ReactHtmlParser(plantFamily[0].acf.family_description)}
             </div>
           </div>
-          <div className="grid-container">
+          <div >
             <ListPlantSpecies filteredList={plantFamily} isLoading={isLoading} />
+          </div>
+          <div className="site-in-progress">
+          Site in progress. Not all species yet available.
           </div>
         </div> : ''}
       <style jsx>{`
         .heading {
           font-size: 2rem;
           color: #0e9d47;
+        }
+        .site-in-progress{
+          margin-top: 30px;
+          margin-bottom:50px;
+          text-align: center;
+          font-size: 20px;
         }
         .rtc-content {
           background-color: #f6f7f9;

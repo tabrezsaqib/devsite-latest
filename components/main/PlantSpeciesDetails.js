@@ -50,7 +50,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
     const response = await fetch(`${API_URL}plants_db`)
     const all_plants = await response.json();
     const plant_family_details = all_plants.filter((data) => data.acf.plant_family.includes(param))
-   console.log(plant_family_details)
+    console.log(plant_family_details)
     dispatch(setPlantFamilyDetails(plant_family_details))
   }
 
@@ -192,36 +192,36 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     </div>
                   </div>
                 </div>
-<br></br>
+                <br></br>
                 <div>
-                  {plant_details.id === 8257?<>
-                  <p>
-                    <strong>Distribution <span>&copy;</span> ACCDC</strong>
-                  </p>
-                  <div className="row">
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                      <div
-                        className={
-                          plant_details.id !== null
-                            ? "featured-image"
-                            : "featured-image disable-pointer-events"
-                        }
-                        data-bs-toggle="modal"
-                        data-bs-target="#distribution-map">
-                           {plant_details.id == null ? (
-                          <div className="d-flex flex-column text-center stock-img-container">
-                            <img src="../../images/no_result_found.png" alt="" />
-                            <span>Oops! No images found!</span>
-                          </div>
-                        ) : (
-                          <img
-                            src={`../../images/${plant_details.id}.png`}
-                            alt="Distribution map"
-                          />
-                        )}
+                  {plant_details.id === 8257 ? <>
+                    <p>
+                      <strong>Distribution </strong><span style={{float:'right', fontSize:'12px'}}>&copy;ACCDC</span> 
+                    </p>
+                    <div className="row">
+                      <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div
+                          className={
+                            plant_details.id !== null
+                              ? "featured-image"
+                              : "featured-image disable-pointer-events"
+                          }
+                          data-bs-toggle="modal"
+                          data-bs-target="#distribution-map">
+                          {plant_details.id == null ? (
+                            <div className="d-flex flex-column text-center stock-img-container">
+                              <img src="../../images/no_result_found.png" alt="" />
+                              <span>Oops! No images found!</span>
+                            </div>
+                          ) : (
+                            <img
+                              src={`../../images/${plant_details.id}.png`}
+                              alt="Distribution map"
+                            />
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </div></>:""}
+                    </div></> : ""}
                 </div>
                 <div
                   className="modal fade"
@@ -346,8 +346,8 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                                 src={`../../images/${plant_details.id}.png`}
                                 alt="Distribution map"
                               />
-                              <p className="img-caption">
-                              <span>&copy;</span> ACCDC
+                              <p className="img-caption" >
+                                <span>&copy;</span> ACCDC
                               </p>
                             </div>
                           )}
@@ -422,9 +422,9 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     <p>
                       <strong>Plant Family: &nbsp;</strong>
                     </p>
-                    <Link 
-                    href="/plantFamilyDetails" 
-                    onClick={() => loadPlantFamily(plant_details.acf.plant_family)}> {ReactHtmlParser(plant_details.acf.plant_family)}</Link>
+                    <Link
+                      href="/plantFamilyDetails"
+                      onClick={() => loadPlantFamily(plant_details.acf.plant_family)}> {ReactHtmlParser(plant_details.acf.plant_family)}</Link>
 
                   </div>
                 )}
