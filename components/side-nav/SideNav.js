@@ -235,12 +235,12 @@ const SideNav = ({
     if (filter === 'spore') {
       filterName = 'Fern'
     }
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-      /* you can also use 'auto' behaviour
-         in place of 'smooth' */
-    })
+    // window.scrollTo({
+    //   top: 0,
+    //   behavior: "smooth",
+    //   /* you can also use 'auto' behaviour
+    //      in place of 'smooth' */
+    // })
     if (activeFilterList.includes(filterName)) {
       const filterIndex = activeFilterList.indexOf(filterName)
       const newFilter = [...activeFilterList]
