@@ -194,7 +194,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                 </div>
                 <br></br>
                 <div>
-                  {plant_details.id === 8257 ? <>
+                  {plant_details.acf.distribution_map_id  ? <>
                     <p>
                       <strong>Distribution </strong><span style={{float:'right', fontSize:'12px'}}>&copy;ACCDC</span> 
                     </p>
@@ -202,20 +202,20 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                       <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div
                           className={
-                            plant_details.id !== null
+                            plant_details.acf.distribution_map_id !== ''
                               ? "featured-image"
                               : "featured-image disable-pointer-events"
                           }
                           data-bs-toggle="modal"
                           data-bs-target="#distribution-map">
-                          {plant_details.id == null ? (
+                          {plant_details.acf.distribution_map_id == '' ? (
                             <div className="d-flex flex-column text-center stock-img-container">
                               <img src="../../images/no_result_found.png" alt="" />
                               <span>Oops! No images found!</span>
                             </div>
                           ) : (
                             <img
-                              src={`../../images/${plant_details.id}.png`}
+                              src={`../../images/maps/${plant_details.acf.distribution_map_id}.jpg`}
                               alt="Distribution map"
                             />
                           )}
@@ -332,7 +332,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                       </div>
                       <div className="modal-body" style={{ margin: "0 auto" }}>
                         <div className="modal-image-container">
-                          {plant_details.id !== 8257 ? (
+                          {plant_details.acf.distribution_map_id === '' ? (
                             <div className="d-flex flex-column text-center stock-img-container">
                               <img
                                 src="../../images/no_result_found.png"
@@ -343,7 +343,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                           ) : (
                             <div>
                               <img
-                                src={`../../images/${plant_details.id}.png`}
+                                src={`../../images/maps/${plant_details.acf.distribution_map_id}.jpg`}
                                 alt="Distribution map"
                               />
                               <p className="img-caption" >
@@ -585,7 +585,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
 
                               {plant_details.acf.characteristics.flower_colour
                                 .length !== 0 && (
-                                  <div className="d-flex">
+                                  <div className="d-flex  label-value-section">
                                     <p>
                                       <strong>Flower Colour: &nbsp;</strong>
                                     </p>
@@ -810,6 +810,11 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     )}
 
                   {/* LEAVES */}
+                  { ( plant_details.acf.characteristics.leaf_duration.length !== 0 || plant_details.acf.characteristics.leaf_type.length !== 0 ||
+                  plant_details.acf.characteristics.leaf_arrangement.length !== 0 || plant_details.acf.characteristics.leaf_blade_edges.length !== 0 ||
+                  plant_details.acf.characteristics.leaf_shape.length !== 0 || plant_details.acf.characteristics.leaf_number || 
+                  plant_details.acf.characteristics.leaflet_divisions  || plant_details.acf.characteristics.leaves_per_node || 
+                  plant_details.acf.characteristics.leaf_description) &&
                   <div className="accordion mb-3" id="accordion2">
                     <div className="accordion-item">
                       <h2 className="accordion-header" id="headingTwo">
@@ -988,10 +993,12 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>}
 
                   {/* SPORES */}
-                  {router.query.type == "Fern" && (
+                  {(router.query.type == "Fern" &&(plant_details.acf.characteristics.spore_description || plant_details.acf.characteristics.spore_location.length !== 0 ||
+                  plant_details.acf.characteristics.spore_shape.length !== 0 ||  plant_details.acf.characteristics.spore_covering.length !== 0  ||
+                  plant_details.acf.characteristics.spore_under_leaf.length !== 0 ) ) && (
                     <div className="accordion mb-3" id="accordion3">
                       <div className="accordion-item">
                         <h2 className="accordion-header" id="headingThree">
@@ -1116,7 +1123,8 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     </div>
                   )}
                   {/* FRUITS */}
-                  {router.query.type !== "Fern" && (
+                  {(router.query.type !== "Fern" && (plant_details.acf.characteristics.fruit_type.length !== 0 || plant_details.acf.characteristics.fruit_length ||
+                  plant_details.acf.characteristics.fruit_color.length !== 0 || plant_details.acf.characteristics.seed_dispersal) )&& (
                     <div className="accordion mb-3" id="accordion3">
                       <div className="accordion-item">
                         <h2 className="accordion-header" id="headingThree">
