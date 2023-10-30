@@ -7,7 +7,6 @@ import { useRouter } from "next/router"
 import Router from "next/router"
 import ReactHtmlParser from "react-html-parser"
 import styles from "../../styles/Global.module.scss"
-import { setPlantFamilyDetails } from "../../redux/actions/getPlantsAction"
 
 import Header from "../layouts/Header"
 import Navbar from "../layouts/Navbar"
@@ -46,12 +45,12 @@ const PlantSpeciesDetails = ({ plant_details }) => {
   }
 
   const loadPlantFamily = async (param) => {
-    // fetch single post detail
-    const response = await fetch(`${API_URL}plants_db`)
-    const all_plants = await response.json();
-    const plant_family_details = all_plants.filter((data) => data.acf.plant_family.includes(param))
-    console.log(plant_family_details)
-    dispatch(setPlantFamilyDetails(plant_family_details))
+    Router.push({
+      pathname: "/plantFamilyDetails",
+      query: { keyword: param },
+    }).then(() => {
+      Router.reload()
+    })
   }
 
   const refresh = () => {
