@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import * as api from "../generics/api";
 import ReactHtmlParser from "react-html-parser"
-import { connect } from "react-redux"
 import { useRouter } from 'next/router'
 
 const SEARCH_URL = process.env.SEARCH_URL
@@ -26,7 +25,7 @@ const PlantFamilyDetails = () => {
     )
     console.log(response.data)
     response.data.shift();
-    setPlantFamily(response.data.length>0? response.data : [])
+    setPlantFamily(response.data.length > 0 ? response.data : [])
   }
 
 

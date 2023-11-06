@@ -54,12 +54,12 @@ const PlantSpeciesDetails = ({ plant_details }) => {
   }
 
   const formatCase = (data) => {
-    if (data[0].search('sna') >= 0 || data[0].search('Sna') >= 0) {
-      return <div>{ data[0].replace(/sna/ig,'SNA')} </div>
-    } else {
-      return <div style={{ textTransform: 'capitalize' }}>{data[0]}</div>
+    if (data.search('sna') >= 0 || data.search('Sna') >= 0) {
+      return data.replace(/sna/ig,'SNA')  
+    }else{
+      return data
     }
-  }
+  } 
 
   const refresh = () => {
     let route = localStorage.getItem("route")
@@ -502,14 +502,32 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                       </p>
                     </div>
                   )}
-                  {plant_details.acf.conservation_rank && (
-                    <div className="d-flex label-value-section">
-                      <p>
-                        <strong>Conservation Rank: &nbsp;</strong>
-                      </p>
-                      {formatCase(plant_details.acf.conservation_rank)}
-                    </div>
-                  )}
+                  {plant_details.acf.conservation_rank ?
+                      plant_details.acf.conservation_rank.length !== 0 && (
+                        <div className="d-flex">
+                          <p>
+                            <strong>Conservation Rank: &nbsp;</strong>
+                          </p>
+                          {plant_details.acf.conservation_rank.map(
+                            (item, index) => (
+                              <div className="d-flex" key={index}>
+                                <p>
+                                  {api.capitalizeFirstLetter(formatCase(item))}
+                                  {item !==
+                                    plant_details.acf.conservation_rank
+                                      .slice(-1)
+                                      .pop() ? (
+                                    <span>, &nbsp;</span>
+                                  ) : (
+                                    ""
+                                  )}
+                                </p>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      ) : ''}
+                  
                   <div className="d-flex">
                     {plant_details.acf.characteristics.habitat ?
                       plant_details.acf.characteristics.habitat.length !== 0 && (
