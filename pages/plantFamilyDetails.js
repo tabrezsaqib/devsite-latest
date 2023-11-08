@@ -16,8 +16,10 @@ const PlantFamilyDetails = () => {
   const [plantFamily, setPlantFamily] = useState([]);
   const router = useRouter()
   useEffect(() => {
+    if(router.query.keyword){
     fetchDetails();
-  }, [router.query.keyword])
+    }
+  }, [router])
 
   const fetchDetails = async () => {
     const response = await api.get(
