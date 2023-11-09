@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import ReactHtmlParser from "react-html-parser"
-import { useRouter } from 'next/router'
+import Router from "next/router"
 import Link from "next/link";
 import styles from "../../styles/SearchResults.module.css"
 
@@ -11,7 +11,6 @@ const API_URL = process.env.API_URL
 const Families = () => {
     const [plantFamily, setPlantFamily] = useState({});
     const [isLoading, setLoading] = useState(true)
-    const Router = useRouter()
     useEffect(() => {
         fetchDetails();
     }, [])
@@ -28,6 +27,8 @@ const Families = () => {
           Router.push({
             pathname: "/plantFamilyDetails",
             query: { keyword: param },
+          }).then(() => {
+            Router.reload()
           })
         }
       }

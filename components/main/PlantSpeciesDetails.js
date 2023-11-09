@@ -49,6 +49,8 @@ const PlantSpeciesDetails = ({ plant_details }) => {
       Router.push({
         pathname: "/plantFamilyDetails",
         query: { keyword: param },
+      }).then(() => {
+        Router.reload()
       })
     }
   }
