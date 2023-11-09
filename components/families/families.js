@@ -44,10 +44,10 @@ const Families = () => {
                     <h2 style={{ textAlign: 'center', marginBottom: '30px' }}>Plant Families</h2>
                     {Object.keys(plantFamily).map((family, i) => (
                         <div key={i} className="listOfPlants">
-                            <Link href="/plantFamilyDetails"
+                            <span className="familyLink"
                                 onClick={() => loadPlantFamily(plantFamily[family][0]['acf']['plant_family'])}>
-                                <span className="familyLink">  {ReactHtmlParser(plantFamily[family][0]['acf']['plant_family'])}</span>
-                            </Link>
+                                {ReactHtmlParser(plantFamily[family][0]['acf']['plant_family'])}
+                            </span>
                             /
                             <span className="familyEnglish">{plantFamily[family][0]['acf']['family_english'] ? plantFamily[family][0]['acf']['family_english'] : '-'}</span>
                         </div>))
@@ -59,6 +59,7 @@ const Families = () => {
             font-style: italic;
             font-weight:bold;
             margin-right: 8px;
+            cursor: pointer
         }
         .center-align{
             margin-left: 50%;

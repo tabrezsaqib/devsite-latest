@@ -431,10 +431,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     <p>
                       <strong>Plant Family: &nbsp;</strong>
                     </p>
-                    <Link
-                      href="/plantFamilyDetails"
-                      onClick={() => loadPlantFamily(plant_details.acf.plant_family)}> {ReactHtmlParser(plant_details.acf.plant_family)}</Link>
-
+                    <span className="familyLink" onClick={() => loadPlantFamily(plant_details.acf.plant_family)}> {ReactHtmlParser(plant_details.acf.plant_family)}</span>
                   </div>
                 )}
                 <div className="d-flex">
@@ -1387,6 +1384,12 @@ const PlantSpeciesDetails = ({ plant_details }) => {
               object-fit: contain;
             }
           }
+        }
+        .familyLink{
+          color: #0e9d47;
+          font-style: italic;
+          font-weight: bold;
+          cursor: pointer
         }
         .slider {
           position: relative;
