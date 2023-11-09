@@ -45,21 +45,21 @@ const PlantSpeciesDetails = ({ plant_details }) => {
   }
 
   const loadPlantFamily = async (param) => {
-    Router.push({
-      pathname: "/plantFamilyDetails",
-      query: { keyword: param },
-    }).then(() => {
-      Router.reload()
-    })
+    if (param) {
+      Router.push({
+        pathname: "/plantFamilyDetails",
+        query: { keyword: param },
+      })
+    }
   }
 
   const formatCase = (data) => {
     if (data.search('sna') >= 0 || data.search('Sna') >= 0) {
-      return data.replace(/sna/ig,'SNA')  
-    }else{
+      return data.replace(/sna/ig, 'SNA')
+    } else {
       return data
     }
-  } 
+  }
 
   const refresh = () => {
     let route = localStorage.getItem("route")
@@ -503,31 +503,31 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     </div>
                   )}
                   {plant_details.acf.conservation_rank ?
-                      plant_details.acf.conservation_rank.length !== 0 && (
-                        <div className="d-flex">
-                          <p>
-                            <strong>Conservation Rank: &nbsp;</strong>
-                          </p>
-                          {plant_details.acf.conservation_rank.map(
-                            (item, index) => (
-                              <div className="d-flex" key={index}>
-                                <p>
-                                  {api.capitalizeFirstLetter(formatCase(item))}
-                                  {item !==
-                                    plant_details.acf.conservation_rank
-                                      .slice(-1)
-                                      .pop() ? (
-                                    <span>, &nbsp;</span>
-                                  ) : (
-                                    ""
-                                  )}
-                                </p>
-                              </div>
-                            )
-                          )}
-                        </div>
-                      ) : ''}
-                  
+                    plant_details.acf.conservation_rank.length !== 0 && (
+                      <div className="d-flex">
+                        <p>
+                          <strong>Conservation Rank: &nbsp;</strong>
+                        </p>
+                        {plant_details.acf.conservation_rank.map(
+                          (item, index) => (
+                            <div className="d-flex" key={index}>
+                              <p>
+                                {api.capitalizeFirstLetter(formatCase(item))}
+                                {item !==
+                                  plant_details.acf.conservation_rank
+                                    .slice(-1)
+                                    .pop() ? (
+                                  <span>, &nbsp;</span>
+                                ) : (
+                                  ""
+                                )}
+                              </p>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    ) : ''}
+
                   <div className="d-flex">
                     {plant_details.acf.characteristics.habitat ?
                       plant_details.acf.characteristics.habitat.length !== 0 && (
