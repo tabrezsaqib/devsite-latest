@@ -36,7 +36,7 @@ const Families = () => {
     return (
         <>
             {isLoading ? (
-                <div className={"d-flex center-align"}>
+                <div className={[styles.imgContainer, "d-flex", 'center-align'].join(" ")}>
                     <img className={styles.imgContent} src="../../images/loading.gif" alt="loader" />
                 </div>) :
                 Object.keys(plantFamily).length > 0 &&
