@@ -30,7 +30,7 @@ const PlantItem = ({ plant }) => {
               <i>{`${plant.title.rendered ? plant.title.rendered : plant.title}`}</i>
             </span>
             <div className="d-flex flex-wrap tags">
-              {plant.acf.characteristics > 0 ? <>
+              {plant.acf.characteristics ? <>
                 {plant.acf.characteristics.habitat.map((val, index) => (
                   <span key={index}>
                     {api.capitalizeFirstLetter(val)}, &nbsp;
