@@ -80,6 +80,7 @@ const SideNav = ({
   }, [activeFilter])
 
   const handleOnChange = (position, option) => {
+    console.log(option, position)
     switch (option) {
       case "plant_type":
         const updatedPlantType = plant_type.map((item, index) =>
@@ -235,12 +236,12 @@ const SideNav = ({
     if (filter === 'spore') {
       filterName = 'Fern'
     }
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    //   /* you can also use 'auto' behaviour
-    //      in place of 'smooth' */
-    // })
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      /* you can also use 'auto' behaviour
+         in place of 'smooth' */
+    })
     if (activeFilterList.includes(filterName)) {
       const filterIndex = activeFilterList.indexOf(filterName)
       const newFilter = [...activeFilterList]
