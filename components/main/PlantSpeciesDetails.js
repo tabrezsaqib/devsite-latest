@@ -13,6 +13,7 @@ import Navbar from "../layouts/Navbar"
 import Footer from "../layouts/Footer"
 import Link from "next/link"
 import { useDispatch } from "react-redux"
+import FamilyDetails from "../families/familyDetails"
 
 
 const PlantSpeciesDetails = ({ plant_details }) => {
@@ -978,7 +979,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                                 </div>
                               )}
                               {plant_details.acf.characteristics
-                                .leaflet_divisions.length>0 && (
+                                .leaflet_divisions.length > 0 && (
                                   <div className="d-flex label-value-section">
                                     <p>
                                       <strong>Leaflet Divisions: &nbsp;</strong>
@@ -1258,18 +1259,14 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     {plant_details.acf.characteristics.wildlife_benefits}
                   </div>
                 )} */}
-                  <div className="mb-3">
-                    {/* {plant_details.acf.characteristics.uses && (
-                    <div className="d-flex flex-column">
-                      <p>
-                        <strong>Uses: </strong>
-                      </p>
-                      <div className="rtc-content">
-                        {ReactHtmlParser(plant_details.acf.uses)}
-                      </div>
+                  {plant_details.acf.similar_species &&
+                    <div >
+                      <br></br>
+                      <p><strong>Explore Similar Plants</strong></p>
+                      <FamilyDetails plant_id={plant_details.acf.similar_species} />
+                      {/* <ListPlantSpecies filteredList={plantFamily} isLoading={isLoading} /> */}
                     </div>
-                  )} */}
-                  </div>
+                  }
                 </div>
               </div>
             </div>

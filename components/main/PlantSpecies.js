@@ -4,13 +4,11 @@ import * as api from "../../generics/api"
 import PlantItem from "./PlantItem"
 
 const PlantSpecies = ({ plant }) => {
-  // console.log("Plant Species: ", plant)
   const router = useRouter()
   return (
     <>
       {router.pathname == `/plants` && router.query.type == `Non-woody` ? (
         <>
-          {/* {console.log("Non Woody: ", plant)} */}
           <PlantItem plant={plant} />
         </>
       ) : router.pathname == `/plants` && router.query.type == `Fern` ? (
@@ -25,6 +23,8 @@ const PlantSpecies = ({ plant }) => {
       ) : router.query.type == "all" ? (
         <PlantItem plant={plant} />
       ) : router.pathname.includes("/plantFamilyDetails") ? (
+        <PlantItem plant={plant} />
+      ) : router.pathname == '/plants/[id]' ? (
         <PlantItem plant={plant} />
       ) : (
         <div
