@@ -233,6 +233,14 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                       </div>
                     </div></> : ""}
                 </div>
+                  {plant_details.acf.similar_species &&
+                    <div >
+                      <br></br>
+                      <p><strong>Explore Similar Plants</strong></p>
+                      <FamilyDetails plant_id={plant_details.acf.similar_species} />
+                      {/* <ListPlantSpecies filteredList={plantFamily} isLoading={isLoading} /> */}
+                    </div>
+                  }
                 <div
                   className="modal fade"
                   id="exampleModal"
@@ -408,25 +416,22 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     )}
                   </div>
                 </div>
-                <div className="d-flex">
-                  {plant_details.acf.wolastoqey && (
-                    <div className="d-flex">
-                      <p>
-                        <strong>Wolastoqey: &nbsp;</strong>
-                      </p>
-                      <p>{ReactHtmlParser(plant_details.acf.wolastoqey)}</p>
-                    </div>
-                  )}
-                  &nbsp;&nbsp;
-                  {plant_details.acf.migmaq && (
-                    <div className="d-flex">
-                      <p>
-                        <strong>Mi&apos;gmaq: &nbsp;</strong>
-                      </p>
-                      <p>{ReactHtmlParser(plant_details.acf.migmaq)}</p>
-                    </div>
-                  )}
-                </div>
+                {plant_details.acf.wolastoqey && (
+                  <div className="d-flex">
+                    <p>
+                      <strong>Wolastoqey: &nbsp;</strong>
+                    </p>
+                    <p>{ReactHtmlParser(plant_details.acf.wolastoqey)}</p>
+                  </div>
+                )}
+                {plant_details.acf.migmaq && (
+                  <div className="d-flex">
+                    <p>
+                      <strong>Mi&apos;gmaq: &nbsp;</strong>
+                    </p>
+                    <p>{ReactHtmlParser(plant_details.acf.migmaq)}</p>
+                  </div>
+                )}
                 {plant_details.acf.plant_family && (
                   <div className="d-flex label-value-section">
                     <p>
@@ -1259,14 +1264,6 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     {plant_details.acf.characteristics.wildlife_benefits}
                   </div>
                 )} */}
-                  {plant_details.acf.similar_species &&
-                    <div >
-                      <br></br>
-                      <p><strong>Explore Similar Plants</strong></p>
-                      <FamilyDetails plant_id={plant_details.acf.similar_species} />
-                      {/* <ListPlantSpecies filteredList={plantFamily} isLoading={isLoading} /> */}
-                    </div>
-                  }
                 </div>
               </div>
             </div>
