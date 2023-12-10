@@ -14,7 +14,7 @@ const ListPlantSpecies = ({
   plants_list,
   activeFilterList,
   isLoading,
-  filteredList,
+  filteredList, pg, rpg
 }) => {
   const router = useRouter()
   const loaderDataCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -22,19 +22,18 @@ const ListPlantSpecies = ({
   useEffect(() => {
     const sorted = [...filteredList].sort((a, b) => {
       if (a.title.rendered && b.title.rendered)
-      return a.title.rendered.localeCompare(b.title.rendered)
+        return a.title.rendered.localeCompare(b.title.rendered)
       else
-      return a.title.localeCompare(b.title)
+        return a.title.localeCompare(b.title)
     });
     setFilteredListSorted(sorted)
   }, [filteredList])
-
   return (
     <div >
       <SelectedFilter />
       <div className="d-flex flex-wrap">
         {filteredListSorted.length > 0 ? (
-          filteredListSorted.map((data, index) => {
+          filteredListSorted.slice(pg * rpg, pg * rpg + rpg).map((data, index) => {
             return (
               <div
                 key={data.id}
