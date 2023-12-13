@@ -84,7 +84,7 @@ const FamilyDetails = ({ plant_id }) => {
                                     {isReadMore ? ReactHtmlParser(plantFamily[0].acf.family_description.slice(0, 1500)) : <Collapse orientation="horizontal" in={true}> {ReactHtmlParser(plantFamily[0].acf.family_description)}</Collapse>}
                                     {plantFamily[0].acf.family_description.length > 1500 &&
                                         <span onClick={toggleReadMore}>
-                                            <div className="moreLink">   {isReadMore ? 'Read more' : 'Show less'}</div>
+                                            <span className="moreLink">   {isReadMore ? 'Read more' : 'Show less'}</span>
                                         </span>
                                     }
                                 </div>

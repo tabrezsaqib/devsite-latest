@@ -16,8 +16,8 @@ const PlantItem = ({ plant }) => {
             src={
               Object.hasOwn(plant.acf, "image_url") == true
                 ? plant.acf.image_url.length > 0
-                  ? plant.acf.image_url[0].full_image_url
-                  : plant.acf.image_url.full_image_url
+                  ? plant.acf.image_url[0].thumbnail_image_url
+                  : plant.acf.image_url.thumbnail_image_url
                 : "../images/no_result_found.png"
             }
             alt=""
