@@ -36,7 +36,6 @@ const SearchResults = ({ search_results }) => {
   useEffect(() => {
     if (!router.isReady) return
     if (router.query.keyword) {
-      alert()
       setHasSearchKeyWord(true)
       dispatch(searchByKeyword(router.query.keyword))
       setLoading(false)
