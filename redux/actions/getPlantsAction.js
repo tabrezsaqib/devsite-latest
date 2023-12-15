@@ -122,17 +122,16 @@ export const searchByKeyword = (slug) => async (dispatch) => {
   const response = await api.get(
     `${SEARCH_URL}search?keyword=${slug}&per_page=50`
   )
-//  console.log(response)
-
-  if (response.data == null) {
+  const filteredRes = response.data.filter((data) => data.acf.common_name)
+  if (filteredRes == null) {
     dispatch({
       type: types.GET_SEARCH_RESULTS,
-      payload: response,
+      payload: filteredRes,
     })
   } else {
     dispatch({
       type: types.GET_SEARCH_RESULTS,
-      payload: response.data,
+      payload: filteredRes,
     })
   }
 }
