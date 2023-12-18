@@ -34,12 +34,15 @@ const SearchResults = ({ search_results }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!router.isReady) return
-    if (router.query.keyword) {
-      setHasSearchKeyWord(true)
-      dispatch(searchByKeyword(router.query.keyword))
-      setLoading(false)
+    async function fetch() {
+      if (!router.isReady) return
+      if (router.query.keyword) {
+        setHasSearchKeyWord(true)
+        await dispatch(searchByKeyword(router.query.keyword))
+        setLoading(false)
+      }
     }
+    fetch()
   }, [
     dispatch,
     router,
@@ -66,13 +69,11 @@ const SearchResults = ({ search_results }) => {
         <span className="breadcrumb">
           {hasSearchKeyword && search_results.length > 0 && `${search_results.length} results found for ${router.query.keyword}`}
         </span>
-        {isLoading ? (
-          <div className="d-flex flex-wrap justify-content-center" >
-            <div className={[styles.imgContainer, "d-flex", "align-items-center", "img-container"].join(" ")}>
-              <img className={styles.imgContent} src="../../images/loading.gif" alt="loader" />
-            </div>
+        {isLoading ? (<div className="d-flex flex-wrap justify-content-center" >
+          <div className={[styles.imgContainer, "d-flex", "align-items-center", "img-container"].join(" ")}>
+            <img className={styles.imgContent} src="../../images/loading.gif" alt="loader" />
           </div>
-        ) : hasSearchKeyword == true ? (currentItems.length > 0 ? (
+        </div>) : hasSearchKeyword == true ? (currentItems.length > 0 ? (
           <div className=" d-flex flex-wrap ">
             {currentItems.map((plant, index) => (
               <div key={index}>
