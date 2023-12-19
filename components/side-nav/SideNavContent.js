@@ -48,6 +48,8 @@ const SideNavContent = ({
   useEffect(() => {
     if (router.query.type == "Fern" || plant_type[0] === true) {
       setSelector({ ...options, 'leaf_divisions': options.leaf_divisions.slice(0, 4), 'stems': options.stems.slice(0, 3) })
+    }else{
+      setSelector(options)
     }
   }, [options, router.query.type, plant_type])
 
