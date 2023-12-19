@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux"
 import { useRouter } from "next/router"
 import SideNavPopover from "./SideNavPopover"
 import React, { useState } from "react"
+import { useEffect } from "react"
 
 const SideNavContent = ({
   options,
@@ -40,7 +41,17 @@ const SideNavContent = ({
   triggerToolTip,
 }) => {
   const router = useRouter()
-  // console.log(options,flower_colour, type)
+  // console.log(options.leaf_divisions, plant_type, router.query.type)
+
+  const [selector, setSelector] = useState(options)
+
+  useEffect(() => {
+    if (router.query.type == "Fern" || plant_type[0] === true) {
+      setSelector({ ...options, 'leaf_divisions': options.leaf_divisions.slice(0, 4), 'stems': options.stems.slice(0, 3) })
+    }
+  }, [options, router.query.type, plant_type])
+
+
   const optionNames = [
     {
       key: "plant_type",
@@ -210,7 +221,8 @@ const SideNavContent = ({
   let id = 0
   const dispatch = useDispatch()
   const getOption = (key) => {
-    const option = options[key].map((data, index) => {
+    // console.log(selector)
+    const option = selector[key].map((data, index) => {
       return (
         <div className="form-check" key={index}>
           <input

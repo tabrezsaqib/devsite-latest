@@ -85,7 +85,7 @@ const fruit_color = [
 ]
 
 const leaf_duration = ["deciduous", "evergreen"]
-const leaf_divisions = ["0", "1", "2", "3"]
+const leaf_divisions = ["0", "1", "2", "3", "4-9", "10 or more"]
 const spore_shape = ["irregular", "kidney", "oblong", "oval", "round"]
 const spore_location = ["separate stalk", "tip of plant", "underside of leaf", "other"]
 const spore_covering = ["absent", "present"]
@@ -107,22 +107,22 @@ const spore_under_leaf = ["away from edge", "edge"]
 //   "york county",
 //   "westmorland county",
 // ]
-if (param !== "Fern") {
-  let index = leaf_shape.indexOf("rounded")
-  if (index !== -1) {
-    leaf_shape.splice(index, 1)
-  }
-}
-if (param !== "Woody") {
-  let removeItems = ["maple-like", "scales", "needles"]
-  const newArray = leaf_shape.filter((v) => !removeItems.includes(v))
-  leaf_shape = newArray
-}
-if (param === "Grass-like") {
-  let removeItems = ["catkin", "composite", "cyme", "solitary flower", "umbel", "whorl"]
-  const newArray = inflorescence.filter((v) => !removeItems.includes(v))
-  inflorescence = newArray
-}
+// if (param !== "Fern") {
+//   let index = leaf_shape.indexOf("rounded")
+//   if (index !== -1) {
+//     leaf_shape.splice(index, 1)
+//   }
+// }
+// if (param !== "Woody") {
+//   let removeItems = ["maple-like", "scales", "needles"]
+//   const newArray = leaf_shape.filter((v) => !removeItems.includes(v))
+//   leaf_shape = newArray
+// }
+// if (param === "Grass-like") {
+//   let removeItems = ["catkin", "composite", "cyme", "solitary flower", "umbel", "whorl"]
+//   const newArray = inflorescence.filter((v) => !removeItems.includes(v))
+//   inflorescence = newArray
+// }
 export {
   plant_type,
   type,
