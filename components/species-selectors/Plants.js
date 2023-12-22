@@ -59,6 +59,10 @@ const Plants = ({
   const [rowsPerPage, setRowsPerPage] = useState(20);
 
   const handleChangePage = (event, newPage) => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
     setPage(newPage);
   };
 
@@ -80,6 +84,7 @@ const Plants = ({
         return (filteredList.current = plant_data)
       } else {
         let filter = {}
+
         Object.entries(allType).map((item) => {
           if (Array.isArray(item[1])) {
             if (item[1].includes(true)) {
@@ -117,7 +122,7 @@ const Plants = ({
     }
   }
 
-  
+
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
@@ -243,7 +248,7 @@ const Plants = ({
         {/* <h4>Non Woody Plants..</h4> */}
         <div className="grid-container">
           <ListPlantSpecies filteredList={filteredList.current} pg={page} rpg={rowsPerPage} isLoading={isLoading} />
-         { filteredList.current.length >0 && <div style={{ float: 'left' }}>
+          {filteredList.current.length > 0 && <div style={{ float: 'left' }}>
             <TablePagination
               component="div"
               count={filteredList.current.length}
