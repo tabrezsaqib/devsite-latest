@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
-import React, {Component} from "react"
+import React, { Component } from "react"
 import Router from "next/router"
 import { useDispatch } from "react-redux"
 import { togglePagination } from "../../redux/actions/paginationAction"
@@ -40,7 +40,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noreferrer">
                   <img
-                  className={localstyles.imgContent}
+                    className={localstyles.imgContent}
                     src="../../images/botanic-garden-dark.png"
                     height="47"
                     alt="logo"
@@ -93,6 +93,9 @@ const Footer = () => {
                 </li>
                 <li className={localstyles.footerListItem}>
                   <a className={localstyles.footerLink} href="/resources">Resources</a>
+                </li>
+                <li className={localstyles.footerListItem} >
+                  <a className={localstyles.footerLink} href="/conservationRank" >Conservation Rank</a>
                 </li>
               </ul>
             </div>
