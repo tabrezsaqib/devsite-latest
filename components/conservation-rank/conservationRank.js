@@ -4,6 +4,7 @@ import Router from "next/router"
 import styles from "../../styles/SearchResults.module.css"
 import * as api from "../../generics/api"
 const API_URL = process.env.API_URL
+const API_POST_URL = process.env.API_POST_URL
 
 const ConservationRank = () => {
     const [plantFamily, setPlantFamily] = useState({});
@@ -20,14 +21,15 @@ const ConservationRank = () => {
             arr.push(...response.data[i].acf.conservation_rank)
         }
         const uniqueArr = new Set(arr)
+        const sortedArr = [...uniqueArr].sort();
         setLoading(false)
-        setPlantFamily([...uniqueArr]);
+        setPlantFamily(sortedArr);
     }
 
     const loadPlantFamily = async (param) => {
         if (param) {
             Router.push({
-                pathname: "/conservationRankDetail",
+                pathname: "/conservationRankDetails",
                 query: { keyword: param },
             }).then(() => {
                 Router.reload()
