@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import ReactHtmlParser from "react-html-parser"
 import Router from "next/router"
-import Link from "next/link";
 import styles from "../../styles/SearchResults.module.css"
 
 import * as api from "../../generics/api"
@@ -50,28 +49,28 @@ const Families = () => {
                                     {ReactHtmlParser(plantFamily[family][0]['acf']['plant_family'])}
                                 </span>
                                 /
-                                <span className="familyEnglish">{plantFamily[family][0]['acf']['family_english'] ? plantFamily[family][0]['acf']['family_english'] : '-'}</span>
+                                <span onClick={() => loadPlantFamily(plantFamily[family][0]['acf']['plant_family'])}
+                                    className="familyLink">
+                                    {plantFamily[family][0]['acf']['family_english'] ? plantFamily[family][0]['acf']['family_english'] : '-'}</span>
                             </div></>))
                         }</div>
                 </div>}
             <style jsx>{`
-        .familyLink {
-            color: #0e9d47;
-            font-style: italic;
-            font-weight:bold;
-            margin-right: 8px;
-            cursor: pointer
-        }
-        .center-align{
-            margin-left: 50%;
-        }
-        .listOfPlants{
-            text-align:center;
-            margin: 10px 0;
-        }
-        .familyEnglish{
-            margin-left:8px;
-        }`}</style>
+            .familyLink {
+                color: #0e9d47;
+                font-style: italic;
+                font-weight:bold;
+                margin-right: 8px;
+                cursor: pointer
+            }
+            .center-align{
+                margin-left: 50%;
+            }
+            .listOfPlants{
+                text-align:center;
+                margin: 10px 0;
+            }`
+            }</style>
         </>
     )
 }
