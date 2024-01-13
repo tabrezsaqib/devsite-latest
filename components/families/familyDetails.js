@@ -157,6 +157,7 @@ const FamilyDetails = ({ plant_id }) => {
                                     <ListPlantSpecies filteredList={plantFamily} isLoading={isLoading} />
                                 </div>
                             </div></>}
+                        {plant_id && <ListPlantSpecies filteredList={plantFamily} isLoading={isLoading} />}
                         {!plant_id &&
                             <div className="site-in-progress">
                                 Site in progress. Not all species yet available.
