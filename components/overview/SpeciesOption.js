@@ -6,8 +6,17 @@ import styles from "../../styles/Global.module.scss"
 import Ferns from "../species-selectors/Ferns"
 import GrassLike from "../species-selectors/GrassLike"
 import localstyles from "../../styles/SpeciesOption.module.css"
+import { fetchAllPlantPosts } from "../../redux/actions/getPlantsAction"
+import { useDispatch } from "react-redux"
+import { useEffect } from "react";
 
 const SpeciesOption = () => {
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAllPlantPosts())
+  }, [])
+
   const optionSelector = (type) => {
     if (type == "Woody") {
       localStorage.setItem("route", "Woody")
@@ -45,11 +54,11 @@ const SpeciesOption = () => {
     if (type == "Grass") {
       localStorage.setItem("route", "Grass")
       Router.push(
-      "/grass"
+        "/grass"
       )
-      .then(() => {
-        Router.reload()
-      })
+        .then(() => {
+          Router.reload()
+        })
     }
   }
   return (
@@ -68,7 +77,7 @@ const SpeciesOption = () => {
         <a className={localstyles.speciesLink} onClick={() => optionSelector("Fern")}>
           <Ferns />
         </a>
-        <a className={localstyles.speciesLink} onClick={() => optionSelector("Grass")} 
+        <a className={localstyles.speciesLink} onClick={() => optionSelector("Grass")}
         // className="disabled"
         >
           <GrassLike />

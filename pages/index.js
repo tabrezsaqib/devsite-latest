@@ -1,8 +1,6 @@
-import Headline from "../components/overview/Headline"
-import SpeciesOption from "../components/overview/SpeciesOption"
+
 import "bootstrap-icons/font/bootstrap-icons.css"
 import AuthComponent from "../components/front/AuthComponent"
-import Head from "next/dist/shared/lib/head"
 import styles from "../styles/index.module.css"
 
 export default function Index() {
