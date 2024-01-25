@@ -25,12 +25,12 @@ const Footer = () => {
         <div className="row d-flex">
           <div className="col-lg-1">
             <div className={[localstyles.footerBrief, "footer-brief"].join(" ")}>
-              <a href="/home">
-                <img
+              <Link href="/home" as="/home" legacyBehavior>
+                <a >   <img
                   src="../../images/logo-dark.png"
                   alt="newbrunswick plants logo"
-                />
-              </a>
+                /></a>
+              </Link>
             </div>
           </div>
           <div className="col-lg-7">
@@ -66,9 +66,9 @@ const Footer = () => {
                   <strong>In Partnership with</strong>
                 </p>
                 <div className={[localstyles.logoContainer, "logo-container"].join(" ")}>
-                  <a href="http://accdc.com//" target="_blank" rel="noreferrer">
-                    <img className={localstyles.imgContent} src="../../images/logoACCDC2014.png" alt="logo" />
-                  </a>
+
+                  <a href="http://accdc.com//" target="_blank" rel="noreferrer">  <img className={localstyles.imgContent} src="../../images/logoACCDC2014.png" alt="logo" /></a>
+
                 </div>
               </div>
             </div>
@@ -83,7 +83,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li className={localstyles.footerListItem} >
-                  <Link  href='/plants/?type=all' as={`/plants/?type=all`} legacyBehavior>
+                  <Link href='/plants/?type=all' as={`/plants/?type=all`} legacyBehavior>
                     <a className={localstyles.footerLink}>Species</a>
                   </Link>
                 </li>

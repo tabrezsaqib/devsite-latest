@@ -122,16 +122,17 @@ export const searchByKeyword = (slug) => async (dispatch) => {
   const response = await api.get(
     `${SEARCH_URL}search?keyword=${slug}&per_page=50`
   )
-  const filteredRes = response.data.filter((data) => data.acf.common_name)
-  if (filteredRes == null) {
+ /// const filtered = response.data.filter((res) => res.acf.plantsnb_id === char.replace(/\s+/g, ""))
+  // const filteredRes = response.data.filter((data) => data.acf.common_name && (data.acf.family_english.indexOf(slug) !== -1))
+  if (response == null) {
     dispatch({
       type: types.GET_SEARCH_RESULTS,
-      payload: filteredRes,
+      payload: response.data,
     })
   } else {
     dispatch({
       type: types.GET_SEARCH_RESULTS,
-      payload: filteredRes,
+      payload: response.data,
     })
   }
 }

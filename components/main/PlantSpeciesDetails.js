@@ -52,7 +52,6 @@ const PlantSpeciesDetails = ({ plant_details }) => {
         pathname: "/plantFamilyDetails",
         query: { keyword: param },
       }).then(() => {
-        Router.reload()
       })
     }
   }

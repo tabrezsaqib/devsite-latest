@@ -7,9 +7,19 @@ import { togglePagination } from "../../redux/actions/paginationAction"
 import React, { Component } from "react"
 import styles from "../../styles/Navbar.module.css"
 import Link from "next/link"
+import { fetchAllPlantPosts } from "../../redux/actions/getPlantsAction"
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const dispatch = useDispatch()
+  const { all_plants } = useSelector(state => state.post)
+
+  useEffect(() => {
+    if (all_plants.length <= 0)
+      dispatch(fetchAllPlantPosts())
+  }, [])
+
   const refresh = () => {
     localStorage.setItem("route", "all")
     dispatch(togglePagination(true))
@@ -24,15 +34,18 @@ const Navbar = () => {
     <div>
       <nav className={[styles.navContainer, "navbar", "navbar-expand-lg", "fixed-top", "navbar-light", "bg-light"].join(" ")}>
         <div className="container-fluid">
-          <a className="navbar-brand" href="/home">
-            <div className={[styles.logoContainer, "logo-container"].join(" ")}>
-              <img
-                className={styles.logoImg}
-                src="../../images/logo.png"
-                alt="new brunswick plants logo"
-              />
-            </div>
-          </a>
+
+          <Link href="/home" as="/home" legacyBehavior>
+            <a className="navbar-brand" >
+              <div className={[styles.logoContainer, "logo-container"].join(" ")}>
+                <img
+                  className={styles.logoImg}
+                  src="../../images/logo.png"
+                  alt="new brunswick plants logo"
+                />
+              </div>
+            </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

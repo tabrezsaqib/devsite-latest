@@ -13,7 +13,6 @@ const SearchForm = () => {
       pathname: "/search",
       query: { keyword: value },
     }).then(() => {
-      Router.reload()
       dispatch(searchByKeyword(value))
     })
 
@@ -23,7 +22,7 @@ const SearchForm = () => {
     <div>
       <SearchFormValidate
         submitSearchQuery={submitSearchQuery}
-        // fetchPlantPosts={fetchPlantPost}
+      // fetchPlantPosts={fetchPlantPost}
       />
     </div>
   )

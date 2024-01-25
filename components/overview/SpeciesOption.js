@@ -6,16 +6,8 @@ import styles from "../../styles/Global.module.scss"
 import Ferns from "../species-selectors/Ferns"
 import GrassLike from "../species-selectors/GrassLike"
 import localstyles from "../../styles/SpeciesOption.module.css"
-import { fetchAllPlantPosts } from "../../redux/actions/getPlantsAction"
-import { useDispatch } from "react-redux"
-import { useEffect } from "react";
 
 const SpeciesOption = () => {
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchAllPlantPosts())
-  }, [])
 
   const optionSelector = (type) => {
     if (type == "Woody") {
@@ -26,7 +18,6 @@ const SpeciesOption = () => {
           type: "Woody",
         },
       }).then(() => {
-        Router.reload()
       })
     }
     if (type == "Non-woody") {
@@ -37,7 +28,6 @@ const SpeciesOption = () => {
           type: "Non-woody",
         },
       }).then(() => {
-        Router.reload()
       })
     }
     if (type == "Fern") {
@@ -48,7 +38,6 @@ const SpeciesOption = () => {
           type: "Fern",
         },
       }).then(() => {
-        Router.reload()
       })
     }
     if (type == "Grass") {
@@ -57,7 +46,6 @@ const SpeciesOption = () => {
         "/grass"
       )
         .then(() => {
-          Router.reload()
         })
     }
   }
