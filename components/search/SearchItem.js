@@ -19,7 +19,7 @@ const SearchItem = ({ plant }) => {
           />
         </div>
         <div className="description">
-          <h4 className={[styles.heading, "heading mt-3"].join(" ")}>{plant.title.rendered}</h4>
+          <h4 className={[styles.heading, "heading mt-3"].join(" ")}>{plant.title.rendered ? plant.title.rendered : plant.title}</h4>
           <div className="d-flex flex-column">
             <span>
               <strong>Common name:</strong> {plant.acf.common_name}
