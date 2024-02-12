@@ -138,12 +138,12 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
                         onClick={() => slideShow(index)}>
-                        <img src={item.thumbnail_image_url} alt="plant image" onContextMenu={(e)=>e.preventDefault()}/>
+                        <img src={item.thumbnail_image_url} alt="plant image" onContextMenu={(e) => e.preventDefault()} />
                       </div>
                     ))
                   ) : (
                     <div className="d-flex flex-column text-center stock-img-container">
-                      <img src="../../images/no_result_found.png" alt="" onContextMenu={(e)=>e.preventDefault()}/>
+                      <img src="../../images/no_result_found.png" alt="" onContextMenu={(e) => e.preventDefault()} />
                       <span>Oops! No images found!</span>
                     </div>
                   )}
@@ -189,13 +189,13 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                         data-bs-target="#featured-image">
                         {plant_details.featured_image.image_url == null ? (
                           <div className="d-flex flex-column text-center stock-img-container">
-                            <img src="../../images/no_result_found.png" alt="" onContextMenu={(e)=>e.preventDefault()}/>
+                            <img src="../../images/no_result_found.png" alt="" onContextMenu={(e) => e.preventDefault()} />
                             <span>Oops! No images found!</span>
                           </div>
                         ) : (
                           <img
                             src={plant_details.featured_image.image_url}
-                            alt="plant image" onContextMenu={(e)=>e.preventDefault()}
+                            alt="plant image" onContextMenu={(e) => e.preventDefault()}
                           />
                         )}
                       </div>
@@ -206,7 +206,16 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                 <div>
                   {plant_details.acf.distribution_map_id ? <>
                     <p>
-                      <strong>Distribution </strong><span style={{ float: 'right', fontSize: '12px' }}>&copy;ACCDC</span>
+                      <strong>Distribution </strong>
+                      <span style={{ float: 'right', fontSize: '12px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                        Source: AC CDC, 2023
+                        <span style={{ float: 'right', fontSize: '12px' }}>
+                          <span className="grey-dot"></span>
+                          Recent (&gt;= 2000)
+                          <span className="green-dot"></span>
+                          Historic (&lt; 2000)
+                        </span>
+                      </span>
                     </p>
                     <div className="row">
                       <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -220,13 +229,13 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                           data-bs-target="#distribution-map">
                           {plant_details.acf.distribution_map_id == '' ? (
                             <div className="d-flex flex-column text-center stock-img-container">
-                              <img src="../../images/no_result_found.png" alt="" onContextMenu={(e)=>e.preventDefault()}/>
+                              <img src="../../images/no_result_found.png" alt="" onContextMenu={(e) => e.preventDefault()} />
                               <span>Oops! No images found!</span>
                             </div>
                           ) : (
                             <img
                               src={`../../images/maps/${plant_details.acf.distribution_map_id}.jpg`}
-                              alt="Distribution map" onContextMenu={(e)=>e.preventDefault()}
+                              alt="Distribution map" onContextMenu={(e) => e.preventDefault()}
                             />
                           )}
                         </div>
@@ -264,7 +273,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                                 plant_details.acf.image_url.length > 0 &&
                                 plant_details.acf.image_url.map((item, index) => (
                                   <div className="each-slide" key={index}>
-                                    <div onContextMenu={(e)=>e.preventDefault()}
+                                    <div onContextMenu={(e) => e.preventDefault()}
                                       style={{
                                         backgroundImage: `url(${plant_details.acf.image_url[
                                           slideIndex || index
@@ -312,7 +321,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                             <div className="d-flex flex-column text-center stock-img-container">
                               <img
                                 src="../../images/no_result_found.png"
-                                alt="" onContextMenu={(e)=>e.preventDefault()}
+                                alt="" onContextMenu={(e) => e.preventDefault()}
                               />
                               {/* <h3>Oops! No images found!</h3> */}
                             </div>
@@ -320,7 +329,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                             <div>
                               <img
                                 src={plant_details.featured_image.image_url}
-                                alt="plant image" onContextMenu={(e)=>e.preventDefault()}
+                                alt="plant image" onContextMenu={(e) => e.preventDefault()}
                               />
                               <p className="img-caption">
                                 {plant_details.featured_image.caption}
@@ -354,7 +363,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                             <div className="d-flex flex-column text-center stock-img-container">
                               <img
                                 src="../../images/no_result_found.png"
-                                alt="" onContextMenu={(e)=>e.preventDefault()}
+                                alt="" onContextMenu={(e) => e.preventDefault()}
                               />
                               {/* <h3>Oops! No images found!</h3> */}
                             </div>
@@ -362,10 +371,19 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                             <div>
                               <img
                                 src={`../../images/maps/${plant_details.acf.distribution_map_id}.jpg`}
-                                alt="Distribution map" onContextMenu={(e)=>e.preventDefault()}
+                                alt="Distribution map" onContextMenu={(e) => e.preventDefault()}
                               />
                               <p className="img-caption" >
-                                <span>&copy;</span> ACCDC
+                                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                                  Source: AC CDC, 2023
+                                  <span >
+                                    <span className="grey-dot"></span>
+                                    Recent (&gt;= 2000)
+                                    <span className="green-dot"></span>
+                                    Historic (&lt; 2000)
+                                  </span>
+                                </span>
+
                               </p>
                             </div>
                           )}
@@ -1471,6 +1489,22 @@ const PlantSpeciesDetails = ({ plant_details }) => {
           font-weight: bold;
           text-align: right;
           color: #0e9d47;
+        }
+        .grey-dot {
+          height: 10px;
+          width: 10px;
+          background-color: grey;
+          border-radius: 48%;
+          display: inline-block;
+          margin-right: 5px;
+        }
+        .green-dot {
+          height: 10px;
+          width: 10px;
+          background-color: green;
+          border-radius: 48%;
+          display: inline-block;
+          margin: 0 5px;
         }
       `}</style>
       </div>
