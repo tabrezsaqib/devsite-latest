@@ -12,7 +12,7 @@ const ConservationRank = () => {
     
     useEffect(() => {
         fetchDetails();
-    }, [])
+    }, [all_plants])
 
     const fetchDetails = async () => {
         let arr = []
