@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as api from "../../generics/api";
-import ReactHtmlParser from "react-html-parser"
 import { useRouter } from 'next/router'
 import ListPlantSpecies from '../main/ListPlantSpecies'
 import styles from "../../styles/SearchResults.module.css"
 import TablePagination from '@mui/material/TablePagination';
+import { useSelector } from "react-redux";
 
 const SEARCH_URL = process.env.SEARCH_URL
 
@@ -13,37 +13,42 @@ const ConservationRankDetails = ({ plant_id }) => {
     const [plantFamily, setPlantFamily] = useState([]);
     const [isLoading, setLoading] = useState(true)
     const router = useRouter();
-    const [page, setPage] = useState(1);
-    const [rowsPerPage, setRowsPerPage] = useState(50);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(100);
+    const { all_plants } = useSelector(state => state.post)
 
     const handleChangePage = (event, newPage) => {
+        // document.querySelector('.mdl-layout__content').scrollTop = 0;
         setPage(newPage);
-        fetchDetails(router.query.keyword, newPage, rowsPerPage)
     };
 
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(1);
-        fetchDetails(router.query.keyword, 0, parseInt(event.target.value, 10))
+        setPage(0);
     };
 
     useEffect(() => {
         async function fetch() {
             if (!router.isReady) return
             if (router.query.keyword) {
-                fetchDetails(router.query.keyword, page, rowsPerPage);
+                fetchDetails(router.query.keyword);
             }
         }
         fetch()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [router, router.isReady, router.query.keyword])
 
-    const fetchDetails = async (char, pg, rpg) => {
+    const fetchDetails = async (char) => {
         setLoading(true)
-        const response = await api.get(`${SEARCH_URL}search?keyword=${char}&per_page=${rpg}&page=${pg}`)
+        let arr = []
+        for (let i = 0; i < all_plants.length; i++) {
+            if (all_plants[i].acf.conservation_rank.includes(char))
+                arr.push(all_plants[i])
+        }
+        // const response = await api.get(`${SEARCH_URL}search?keyword=${char}&per_page=${rpg}&page=${pg}`)
         setLoading(false)
-        const filtered = response.data.filter((res) => { console.log(res.acf.conservation_rank); if (res.acf.conservation_rank) return res.acf.conservation_rank.includes(char) })
-        setPlantFamily(filtered)
+        // const filtered = response.data.filter((res) => { console.log(res.acf.conservation_rank); if (res.acf.conservation_rank) return res.acf.conservation_rank.includes(char) })
+        setPlantFamily(arr)
     }
 
     return (
@@ -62,28 +67,22 @@ const ConservationRankDetails = ({ plant_id }) => {
                             </div>
                         </div> </>
                     {plantFamily.length > 0 ?
-                        <ListPlantSpecies filteredList={plantFamily} isLoading={isLoading} /> :
+                        <ListPlantSpecies filteredList={plantFamily} pg={page} rpg={rowsPerPage} isLoading={isLoading} /> :
                         <div className="NoData">No Data</div>}
                     <div className="d-flex">
                         <TablePagination
                             component="div"
-                            count={-1}
+                            count={plantFamily.length}
                             page={page}
                             onPageChange={handleChangePage}
                             rowsPerPage={rowsPerPage}
                             showFirstButton
                             showLastButton
                             labelRowsPerPage="Species Per Page:"
-                            rowsPerPageOptions={[18, 30, 50]}
+                            rowsPerPageOptions={[20, 50, 100]}
                             onRowsPerPageChange={handleChangeRowsPerPage}
                             sx={{
-                                padding: 0,
-                                '& .MuiTablePagination-displayedRows': {
-                                    display: 'none',
-                                },
-                                '& .MuiInputBase-root': {
-                                    marginRight: 0
-                                }
+                                padding: 0
                             }}
                         /></div>
                     <div className="site-in-progress">
