@@ -181,13 +181,13 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     <div className="col-sm-12 col-md-12 col-lg-12 col-xl-6">
                       <div
                         className={
-                          plant_details.featured_image.image_url !== null
+                          plant_details.featured_image.image_url !== false ||  plant_details.featured_image.image_url !== null
                             ? "featured-image"
                             : "featured-image disable-pointer-events"
                         }
                         data-bs-toggle="modal"
                         data-bs-target="#featured-image">
-                        {plant_details.featured_image.image_url == null ? (
+                        {plant_details.featured_image.image_url == false || plant_details.featured_image.image_url == null ? (
                           <div className="d-flex flex-column text-center stock-img-container">
                             <img src="../../images/no_result_found.png" alt="" onContextMenu={(e) => e.preventDefault()} />
                             <span>Oops! No images found!</span>

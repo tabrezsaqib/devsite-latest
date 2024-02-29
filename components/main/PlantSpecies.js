@@ -39,7 +39,7 @@ const PlantSpecies = ({ plant }) => {
           }>
           <div className="info-section d-flex align-items-center justify-content-center">
             <div className="d-flex flex-column text-center">
-              <img src="../images/no_result_found.png" alt="" />
+              <img src="../../images/no_result_found.png" alt="" />
               <h3>Oops! No data found!</h3>
             </div>
           </div>
