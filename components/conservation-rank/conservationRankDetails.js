@@ -6,6 +6,7 @@ import ListPlantSpecies from '../main/ListPlantSpecies'
 import styles from "../../styles/SearchResults.module.css"
 import TablePagination from '@mui/material/TablePagination';
 import { useSelector } from "react-redux";
+import BrokenPageAlert from "../../generics/brokenPageAlert";
 
 const SEARCH_URL = process.env.SEARCH_URL
 
@@ -56,8 +57,8 @@ const ConservationRankDetails = ({ plant_id }) => {
             {isLoading ? (
                 <div className={[styles.imgContainer, "d-flex", 'center-align'].join(" ")}>
                     <img className={styles.imgContent} src="../../images/loading.gif" alt="loader" />
-                </div>) :
-                <div style={{ margin: '10px' }}>
+                </div>) : isError ? <div style={{ margin: '5% 15% 20%' }}><BrokenPageAlert />  </div> :
+                plantFamily.length > 0 ? <div style={{ margin: '10px' }}>
                     <>
                         <div className="d-flex flex-column mt-2">
                             <div className="d-flex">
@@ -88,7 +89,7 @@ const ConservationRankDetails = ({ plant_id }) => {
                     <div className="site-in-progress">
                         Site in progress. Not all species yet available.
                     </div>
-                </div>}
+                </div> : ''}
             <style jsx>{`
         .heading {
           font-size: 2rem;
