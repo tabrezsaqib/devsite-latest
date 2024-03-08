@@ -13,6 +13,7 @@ const SEARCH_URL = process.env.SEARCH_URL
 const ConservationRankDetails = ({ plant_id }) => {
     const [plantFamily, setPlantFamily] = useState([]);
     const [isLoading, setLoading] = useState(true)
+    const [isError, setIsError] = useState(false)
     const router = useRouter();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(100);
@@ -42,15 +43,20 @@ const ConservationRankDetails = ({ plant_id }) => {
     const fetchDetails = async (char) => {
         setLoading(true)
         let arr = []
-        for (let i = 0; i < all_plants.length; i++) {
-            if (all_plants[i].acf.conservation_rank.includes(char))
-                arr.push(all_plants[i])
+        try {
+            for (let i = 0; i < all_plants.length; i++) {
+                if (all_plants[i].acf.conservation_rank.includes(char))
+                    arr.push(all_plants[i])
+            }
+        } catch (error) {
+            setIsError(true)
         }
         // const response = await api.get(`${SEARCH_URL}search?keyword=${char}&per_page=${rpg}&page=${pg}`)
         setLoading(false)
         // const filtered = response.data.filter((res) => { console.log(res.acf.conservation_rank); if (res.acf.conservation_rank) return res.acf.conservation_rank.includes(char) })
         setPlantFamily(arr)
     }
+
 
     return (
         <>

@@ -3,13 +3,14 @@ import { connect, useDispatch } from "react-redux"
 import { useRouter } from "next/router"
 import { fetchNonWoodyPlantPosts, fetchWoodyPlantPosts, fetchFernPosts, fetchAllPlantPosts, setLoader } from "../../redux/actions/getPlantsAction"
 import TablePagination from '@mui/material/TablePagination';
+import BrokenPageAlert from "../../generics/brokenPageAlert";
 import ListPlantSpecies from "../main/ListPlantSpecies"
 import SideNav from "../side-nav/SideNav"
 import * as options from "../../data/sideNavListDataArray"
 import styles from "../../styles/Global.module.scss"
 import localstyles from "../../styles/Plants.module.css"
 
-const Plants = ({ all_plants, nonwoody_plants, woody_plants, ferns, isLoading, activeFilterList, allType }) => {
+const Plants = ({ all_plants, nonwoody_plants, woody_plants, ferns, isLoading, activeFilterList, allType ,plantsError}) => {
 
   const dispatch = useDispatch()
 
@@ -146,6 +147,7 @@ const Plants = ({ all_plants, nonwoody_plants, woody_plants, ferns, isLoading, a
         className={filteredList.length == 0 ? [styles.error_bg_media_query, localstyles.errorBg, "col-lg-9"].join(" ") : "col-lg-9 col-sm-12"}>
         {/* <h4>Non Woody Plants..</h4> */}
         <div className="grid-container">
+          {plantsError && <BrokenPageAlert/>}
           <ListPlantSpecies filteredList={filteredList} pg={page} rpg={rowsPerPage} isLoading={isLoading} />
           {filteredList.length > 0 && <div style={{ float: 'left' }}>
             <TablePagination
@@ -178,6 +180,7 @@ const mapStateToProps = (state) => {
     activeFilterList: state.selector.activeFilterList,
     allType: state.selector,
     plant_type: state.selector.plant_type,
+    plantsError: state.post.plantsError
   }
 }
 
