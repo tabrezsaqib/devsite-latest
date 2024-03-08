@@ -30,7 +30,7 @@ export const setLoader = () => async (dispatch) => {
 
 export const fetchNonWoodyPlantPosts = (type) => async (dispatch) => {
   try {
-    const response = await api.get(`${API_URL}plants_d?plant_type=${type}`)
+    const response = await api.get(`${API_URL}plants_db?plant_type=${type}`)
     dispatch({
       type: types.GET_NONWOODY_PLANTS,
       payload: response.data,
