@@ -7,6 +7,7 @@ import { useRouter } from "next/router"
 import Router from "next/router"
 import ReactHtmlParser from "react-html-parser"
 import styles from "../../styles/Global.module.scss"
+import BrokenPageAlert from "../../generics/brokenPageAlert";
 
 import Header from "../layouts/Header"
 import Navbar from "../layouts/Navbar"
@@ -86,7 +87,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
       <Header />
       <Navbar />
       <div className="mt-3">
-        {plant_details.length !== 0 ? (
+        {plant_details ? (
           <div className="row" key={plant_details.id}>
             <div className="col-lg-3" style={{ borderRight: '1px solid #e0e1e3' }}>
               <div className="side-bar">
@@ -181,7 +182,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     <div className="col-sm-12 col-md-12 col-lg-12 col-xl-6">
                       <div
                         className={
-                          plant_details.featured_image.image_url !== false ||  plant_details.featured_image.image_url !== null
+                          plant_details.featured_image.image_url !== false || plant_details.featured_image.image_url !== null
                             ? "featured-image"
                             : "featured-image disable-pointer-events"
                         }
@@ -206,17 +207,17 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                 <div>
                   {plant_details.acf.distribution_map_id ? <>
                     <div className="row">
-                    <div className="col-md-12 col-lg-4">  <strong>Distribution </strong></div>
-                    <div className="col-md-12  col-lg-8">
-                      <span style={{ float: 'right', fontSize: '12px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                        Source: AC CDC, 2023
-                        <span style={{ float: 'right', fontSize: '12px', textAlign:'right' }}>
-                         <div> <span className="grey-dot"></span>
-                          Recent (&gt;= 2000)</div>
-                          <div> <span className="green-dot"></span>
-                          Historic (&lt; 2000)</div>
+                      <div className="col-md-12 col-lg-4">  <strong>Distribution </strong></div>
+                      <div className="col-md-12  col-lg-8">
+                        <span style={{ float: 'right', fontSize: '12px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                          Source: AC CDC, 2023
+                          <span style={{ float: 'right', fontSize: '12px', textAlign: 'right' }}>
+                            <div> <span className="grey-dot"></span>
+                              Recent (&gt;= 2000)</div>
+                            <div> <span className="green-dot"></span>
+                              Historic (&lt; 2000)</div>
+                          </span>
                         </span>
-                      </span>
                       </div>
                     </div>
                     <div className="row">
@@ -577,14 +578,27 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                               </div>
                             )
                           )}
+
+                          {plant_details.acf.characteristics.habitat_description && (
+                            <div className="d-flex">
+                            <span>&#x3B;&nbsp;</span>
+                              {plant_details.acf.characteristics.habitat_description}
+                            </div>
+                          )}
                         </div>
-                      ) : ''}
-                    <span>&#x3B;&nbsp;</span>
-                    {plant_details.acf.characteristics.habitat_description && (
+                      ) :
                       <div className="d-flex">
-                        {plant_details.acf.characteristics.habitat_description}
+                        <p>
+                          <strong>Habitat: &nbsp;</strong>
+                        </p>
+                        {plant_details.acf.characteristics.habitat_description && (
+                          <div className="d-flex">
+                            {plant_details.acf.characteristics.habitat_description}
+                          </div>
+                        )
+                        }
                       </div>
-                    )}
+                    }
                   </div>
                   {plant_details.acf.characteristics.height && (
                     <div className="d-flex label-value-section">
@@ -1289,13 +1303,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
             </div>
           </div>
         ) : (
-          <div className="row">
-            <div className="col-lg-12 d-flex align-items-center justify-content-center">
-              <div className="loader d-flex align-items-center">
-                <img src="../../images/loading.gif" alt="loader" />
-              </div>
-            </div>
-          </div>
+          <div style={{ margin: '5% 0 20% 0', padding: '0 5%' }}> <BrokenPageAlert /> </div>
         )}
         <style jsx>{`
         .heading {
