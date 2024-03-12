@@ -556,7 +556,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
 
                   <div className="d-flex">
                     {plant_details.acf.characteristics.habitat ?
-                      plant_details.acf.characteristics.habitat.length !== 0 && (
+                      plant_details.acf.characteristics.habitat.length !== 0 ?
                         <div className="d-flex">
                           <p>
                             <strong>Habitat: &nbsp;</strong>
@@ -581,12 +581,23 @@ const PlantSpeciesDetails = ({ plant_details }) => {
 
                           {plant_details.acf.characteristics.habitat_description && (
                             <div className="d-flex">
-                            <span>&#x3B;&nbsp;</span>
+                              <span>&#x3B;&nbsp;</span>
                               {plant_details.acf.characteristics.habitat_description}
                             </div>
                           )}
+                        </div> :
+                        <div className="d-flex">
+                          <p>
+                            <strong>Habitat: &nbsp;</strong>
+                          </p>
+                          {plant_details.acf.characteristics.habitat_description && (
+                            <div className="d-flex">
+                              {plant_details.acf.characteristics.habitat_description}
+                            </div>
+                          )
+                          }
                         </div>
-                      ) :
+                      :
                       <div className="d-flex">
                         <p>
                           <strong>Habitat: &nbsp;</strong>
