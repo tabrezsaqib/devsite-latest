@@ -90,7 +90,8 @@ const FamilyDetails = ({ plant_id }) => {
                 console.log(id)
                 let arr = []
                 for (let i = 0; i < id.length; i++) {
-                    await fetchDetails(id[i], 'plant').then(result => { arr.push(result[0]) })
+                    await fetchDetails(id[i], 'plant').then(
+                        result => { if(result) arr.push(result[0]) })
                 }
                 setPlantFamily(arr)
             } else {
