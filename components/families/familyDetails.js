@@ -1,15 +1,21 @@
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable camelcase */
+/* eslint-disable react/no-unknown-property */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/prop-types */
+
 import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
-import * as api from "../../generics/api";
 import ReactHtmlParser from "react-html-parser"
 import { useRouter } from 'next/router'
+import * as api from "../../generics/api";
 import ListPlantSpecies from '../main/ListPlantSpecies'
 import styles from "../../styles/SearchResults.module.css";
 import BrokenPageAlert from "../../generics/brokenPageAlert";
 
-const SEARCH_URL = process.env.SEARCH_URL
+const {SEARCH_URL} = process.env
 
-const ClampedDiv = ({ children }) => {
+function ClampedDiv({ children }) {
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
     const [showLink, setShowLink] = useState(false);
@@ -74,9 +80,9 @@ const ClampedDiv = ({ children }) => {
           font-size: 15px;
         }`}</style>
     </div>
-};
+}
 
-const FamilyDetails = ({ plant_id }) => {
+function FamilyDetails({ plant_id }) {
     const [plantFamily, setPlantFamily] = useState([]);
     const [isLoading, setLoading] = useState(true)
     const [isError, setIsError] = useState(false)
@@ -86,10 +92,11 @@ const FamilyDetails = ({ plant_id }) => {
 
         async function fetch() {
             if (plant_id) {
-                let id = plant_id.split(',')
-                console.log(id)
-                let arr = []
+                const id = plant_id.split(',')
+                const arr = []
+                // eslint-disable-next-line no-plusplus
                 for (let i = 0; i < id.length; i++) {
+                    // eslint-disable-next-line no-await-in-loop, no-use-before-define
                     await fetchDetails(id[i], 'plant').then(
                         result => { if(result) arr.push(result[0]) })
                 }
@@ -113,10 +120,10 @@ const FamilyDetails = ({ plant_id }) => {
                 if (type === 'plant') {
                     const filtered = response.data.filter((res) => res.acf.plantsnb_id === char.replace(/\s+/g, ""))
                     return filtered
-                } else {
+                } 
                     response.data.shift();
                     setPlantFamily(response.data.length > 0 ? response.data : [])
-                }
+                
             } catch (error) {
                 setIsError(true)
             }
