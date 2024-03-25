@@ -1,7 +1,8 @@
+/* eslint-disable no-irregular-whitespace */
 import Alert from '@mui/material/Alert';
 import { AlertTitle } from "@mui/material";
 
-const BrokenPageAlert = () => {
+function BrokenPageAlert() {
     return (
         <Alert severity="error" >
             <AlertTitle>Service Down </AlertTitle>

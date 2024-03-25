@@ -78,6 +78,7 @@ const Plants = ({ all_plants, nonwoody_plants, woody_plants, ferns, isLoading, a
     } catch (error) {
       console.log(error.message)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeFilterList])
 
 
@@ -104,7 +105,7 @@ const Plants = ({ all_plants, nonwoody_plants, woody_plants, ferns, isLoading, a
 
       }
       else if (router.query.type == "Non-woody") {
-        if (nonwoody_plants.length === 0) {
+        if (nonwoody_plants.length == 0) {
           await dispatch(setLoader())
           await dispatch(fetchNonWoodyPlantPosts(router.query.type))
         } else {
@@ -121,6 +122,7 @@ const Plants = ({ all_plants, nonwoody_plants, woody_plants, ferns, isLoading, a
       }
     }
     fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allType, woody_plants, ferns, all_plants, nonwoody_plants, router, activeFilterList])
 
   const toggleSidebarVisibility = () => {
