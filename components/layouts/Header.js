@@ -1,9 +1,7 @@
-/* eslint-disable @next/next/no-page-custom-font */
-/* eslint-disable @next/next/no-css-tags */
-/* eslint-disable @next/next/no-sync-scripts */
+
 import Head from "next/head"
 
-const Header = () => {
+function Header() {
   return (
     <Head>
       <title>NB Plants</title>
@@ -12,7 +10,7 @@ const Header = () => {
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-        crossOrigin="anonymous"></link>
+        crossOrigin="anonymous" />
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.css"
@@ -29,12 +27,12 @@ const Header = () => {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
       <link
         href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap"
-        rel="stylesheet"></link>
+        rel="stylesheet" />
 
       <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossOrigin="true"></script>
+        crossOrigin="true" />
     </Head>
   )
 }

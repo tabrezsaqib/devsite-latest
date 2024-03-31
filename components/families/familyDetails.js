@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable camelcase */
 /* eslint-disable react/no-unknown-property */

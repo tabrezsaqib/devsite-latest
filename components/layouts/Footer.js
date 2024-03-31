@@ -1,24 +1,10 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-/* eslint-disable @next/next/no-img-element */
-import React, { Component } from "react"
-import Router from "next/router"
-import { useDispatch } from "react-redux"
-import { togglePagination } from "../../redux/actions/paginationAction"
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from "react"
+import Link from "next/link"
 import styles from "../../styles/Global.module.scss"
 import localstyles from "../../styles/Footer.module.css"
-import Link from "next/link"
 
-const Footer = () => {
-  const dispatch = useDispatch()
-  const refresh = () => {
-    dispatch(togglePagination(true))
-    Router.push({
-      pathname: "/plants",
-      query: { type: "all" },
-    }).then(() => {
-      Router.reload()
-    })
-  }
+function Footer() {
   return (
     <section className={[localstyles.footer, "footer"].join(" ")}>
       <div className="container">
@@ -78,37 +64,37 @@ const Footer = () => {
               className={[styles.footer_media_query, localstyles.footerNav, "footer-nav"].join(" ")}>
               <ul className={[localstyles.footerList, "d-flex", "flex-column", "flex-wrap"].join(" ")}>
                 <li className={localstyles.footerListItem}>
-                  <Link href='/home' as={`/home`} legacyBehavior>
+                  <Link href='/home' as="/home" legacyBehavior>
                     <a className={localstyles.footerLink}>Home</a>
                   </Link>
                 </li>
                 <li className={localstyles.footerListItem} >
-                  <Link href='/plants/?type=all' as={`/plants/?type=all`} legacyBehavior>
+                  <Link href='/plants/?type=all' as="/plants/?type=all" legacyBehavior>
                     <a className={localstyles.footerLink}>Species</a>
                   </Link>
                 </li>
                 <li className={localstyles.footerListItem}>
-                  <Link href='/glossary' as={`/glossary`} legacyBehavior>
+                  <Link href='/glossary' as="/glossary" legacyBehavior>
                     <a className={localstyles.footerLink}>Glossary</a>
                   </Link>
                 </li>
                 <li className={localstyles.footerListItem}>
-                  <Link href='/contact' as={`/contact`} legacyBehavior>
+                  <Link href='/contact' as="/contact" legacyBehavior>
                     <a className={localstyles.footerLink}>Contact Us</a>
                   </Link>
                 </li>
                 <li className={localstyles.footerListItem}>
-                  <Link href='/plantFamilies' as={`/plantFamilies`} legacyBehavior>
+                  <Link href='/plantFamilies' as="/plantFamilies" legacyBehavior>
                     <a className={localstyles.footerLink}>Plant Families</a>
                   </Link>
                 </li>
                 <li className={localstyles.footerListItem}>
-                  <Link href='/resources' as={`/resources`} legacyBehavior>
+                  <Link href='/resources' as="/resources" legacyBehavior>
                     <a className={localstyles.footerLink}>Resources</a>
                   </Link>
                 </li>
                 <li className={localstyles.footerListItem} >
-                  <Link href='/conservationRank' as={`/conservationRank`} legacyBehavior>
+                  <Link href='/conservationRank' as="/conservationRank" legacyBehavior>
                     <a className={localstyles.footerLink}>Conservation Rank</a>
                   </Link>
                 </li>
