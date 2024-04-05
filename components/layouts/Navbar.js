@@ -1,12 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable camelcase */
 
-import { useDispatch , useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import React, { useEffect } from "react"
 import Link from "next/link"
 import styles from "../../styles/Navbar.module.css"
 import { fetchAllPlantPosts } from "../../redux/actions/getPlantsAction"
-
 
 import SearchForm from "../search/SearchForm"
 
@@ -17,7 +16,7 @@ function Navbar() {
   useEffect(() => {
     if (all_plants.length <= 0)
       dispatch(fetchAllPlantPosts())
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

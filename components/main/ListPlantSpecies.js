@@ -2,12 +2,12 @@
 import { connect, useDispatch } from "react-redux"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 import PlantSpecies from "./PlantSpecies"
 import styles from "../../styles/Global.module.scss"
 import loaderStyles from "../../styles/Loader.module.scss"
 import LoaderThumbnail from "./LoaderThumbnail"
 import SelectedFilter from "./selectedFilter"
-import { useEffect, useState } from "react"
 import { Alert, AlertTitle } from "@mui/material"
 
 const ListPlantSpecies = ({ activeFilterList, isLoading, filteredList, pg, rpg }) => {
