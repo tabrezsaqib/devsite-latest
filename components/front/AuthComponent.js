@@ -24,7 +24,7 @@ function AuthComponent({authentication_state}) {
     };
     if (!authentication_state){
         return(
-            <div className={[styles.loginContainer, "row"].join(" ")}>
+            <div className={[styles.loginContainer].join(" ")}>
                 <h2 className={[styles.loginTitle, "text-center", "mt-4"].join(" ")}>NB Plants Login Page</h2>
                 <div className={[styles.formSection, "form-section"].join(" ")}>
                   <form onSubmit={handleLogin}>
