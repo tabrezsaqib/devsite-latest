@@ -28,7 +28,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
   useEffect(() => {
     router.beforePopState(({ as }) => {
       if (as !== router.asPath) {
-        document.querySelector(".modal-backdrop").remove();
+        document.querySelector(".modal-backdrop")?.remove();
       }
       return true;
     });
