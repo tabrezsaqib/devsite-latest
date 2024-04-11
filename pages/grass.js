@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import styles from "../styles/grass.module.css"
 import Router from "next/router"
 import Footer from "../components/layouts/Footer";
-import Header from "../components/layouts/Header";
 import Navbar from "../components/layouts/Navbar";
 
 
@@ -43,7 +41,6 @@ const grass = () => {
   }
   return (
     <>
-    <Header />
     <Navbar />
     <div>
       <div className={styles.contactPageContainer}>

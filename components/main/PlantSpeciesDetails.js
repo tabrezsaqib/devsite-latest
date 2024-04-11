@@ -9,10 +9,8 @@ import ReactHtmlParser from "react-html-parser"
 import styles from "../../styles/Global.module.scss"
 import BrokenPageAlert from "../../generics/brokenPageAlert";
 
-import Header from "../layouts/Header"
 import Navbar from "../layouts/Navbar"
 import Footer from "../layouts/Footer"
-import Link from "next/link"
 import { useDispatch } from "react-redux"
 import FamilyDetails from "../families/familyDetails"
 
@@ -97,7 +95,6 @@ const PlantSpeciesDetails = ({ plant_details }) => {
 
   return (
     <>
-      <Header />
       <Navbar />
       <div className="mt-3">
         {plant_details ? (

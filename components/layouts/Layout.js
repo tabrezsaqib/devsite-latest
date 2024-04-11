@@ -2,7 +2,6 @@
 /* eslint-disable camelcase */
 // import Footer from "./Footer"
 import { connect } from "react-redux"
-import Header from "./Header"
 import Navbar from "./Navbar"
 
 
@@ -11,7 +10,6 @@ function Layout({ children, authentication_state }) {
     <>
         {authentication_state?
         <>
-        <Header />
         <Navbar />
         </>
         : null}

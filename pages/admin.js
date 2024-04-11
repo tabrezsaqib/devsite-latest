@@ -10,7 +10,6 @@ import Navbar from "../components/layouts/Navbar";
 const admin = () => {
   return (
     <>
-    <Header />
     <Navbar />
     <>
       <ToastContainer />
