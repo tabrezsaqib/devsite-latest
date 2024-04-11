@@ -25,6 +25,19 @@ const PlantSpeciesDetails = ({ plant_details }) => {
   const dispatch = useDispatch()
   const API_URL = process.env.API_URL
 
+  useEffect(() => {
+    router.beforePopState(({ as }) => {
+      if (as !== router.asPath) {
+        document.querySelector(".modal-backdrop").remove();
+      }
+      return true;
+    });
+
+    return () => {
+      router.beforePopState(() => true);
+    };
+  }, [router])
+
 
   const slideShow = (index) => {
     setSlide(true)
@@ -131,12 +144,12 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     plant_details.acf.image_url.length > 0 ? (
                     plant_details.acf.image_url.slice(0, 6).map((item, index) => (
                       <div
+                        data-bs-toggle="modal"
                         key={index}
                         className={[
                           styles.img_container_media,
                           "img-container img-tabs",
                         ].join(" ")}
-                        data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
                         onClick={() => slideShow(index)}>
                         <img src={item.thumbnail_image_url} alt="plant image" onContextMenu={(e) => e.preventDefault()} />
@@ -254,8 +267,10 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                   </div>
                 }
                 <div
+                  style={{ zIndex: '10600' }}
                   className="modal fade"
                   id="exampleModal"
+                  role="dialog"
                   tabIndex="-1"
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true">
@@ -306,6 +321,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                 <div
                   className="modal fade"
                   id="featured-image"
+                  style={{ zIndex: '10600' }}
                   tabIndex="-1"
                   aria-labelledby="featured-image-label"
                   aria-hidden="true">
@@ -348,6 +364,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                 <div
                   className="modal fade"
                   id="distribution-map"
+                  style={{ zIndex: '10600' }}
                   tabIndex="-1"
                   aria-labelledby="distribution-map-label"
                   aria-hidden="true">
