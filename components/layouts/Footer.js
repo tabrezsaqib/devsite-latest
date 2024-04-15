@@ -4,30 +4,30 @@ import Link from "next/link"
 import styles from "../../styles/Global.module.scss"
 import localstyles from "../../styles/Footer.module.css"
 
-function Footer({isFixed}) {
+function Footer({ isFixed }) {
   return (
-    <section className={[localstyles.footer, "footer", isFixed && localstyles.fixed].join(" ")}> 
+    <section className={[localstyles.footer, "footer", isFixed && localstyles.fixed].join(" ")}>
       <div className="container">
         <div className="row d-flex">
-         
-          <div className="col-lg-7">
-         
+
+          <div className="col-lg-7 offset-lg-1">
+
             <div className="sponsor d-flex justify-content-between align-items-start ">
-            <div className={[localstyles.footerBrief, "footer-brief"].join(" ")}>
-              <Link href="/home" as="/home" legacyBehavior>
-                <a >   <img style={{height:'50px'}}
-                  src="../../images/logo-dark.png"
-                  alt="newbrunswick plants logo"
-                /></a>
-              </Link>
-            </div>
+              <div className={[localstyles.footerBrief, "footer-brief"].join(" ")}>
+                <Link href="/home" as="/home" legacyBehavior>
+                  <a >   <img style={{ height: '50px' }}
+                    src="../../images/logo-dark.png"
+                    alt="newbrunswick plants logo"
+                  /></a>
+                </Link>
+              </div>
               <div className={[localstyles.logoContainer, "logo-container"].join(" ")}>
                 <a
                   href="https://www.frederictonbotanicgarden.com/"
                   target="_blank"
                   rel="noreferrer">
                   <img
-                  style={{height:'50px'}}
+                    style={{ height: '50px' }}
                     className={localstyles.imgContent}
                     src="../../images/botanic-garden-dark.png"
                     height="47"
@@ -41,7 +41,7 @@ function Footer({isFixed}) {
                     href="https://www2.gnb.ca/content/gnb/en/services/services_renderer.13136.Environmental_Trust_Fund.html"
                     target="_blank"
                     rel="noreferrer">
-                    <img style={{height:'40px'}} className={localstyles.imgContent} src="../../images/nb-logo.png" alt="logo" />
+                    <img style={{ height: '40px' }} className={localstyles.imgContent} src="../../images/nb-logo.png" alt="logo" />
                   </a>
                 </div>
                 <span className={[localstyles.partnershipTagline, "partnership-tagline"].join(" ")}>
@@ -49,18 +49,18 @@ function Footer({isFixed}) {
                 </span>
               </div>
               <div>
-              <p className={[localstyles.logoHeader, "logo-header"].join(" ")}>
+                <p className={[localstyles.logoHeader, "logo-header"].join(" ")}>
                   <strong>In Partnership with</strong>
                 </p>
                 <div className={[localstyles.logoContainer, "logo-container"].join(" ")}>
 
-                  <a href="http://accdc.com//" target="_blank" rel="noreferrer">  <img style={{height:'40px'}} className={localstyles.imgContent} src="../../images/logoACCDC2014.png" alt="logo" /></a>
+                  <a href="http://accdc.com//" target="_blank" rel="noreferrer">  <img style={{ height: '40px' }} className={localstyles.imgContent} src="../../images/logoACCDC2014.png" alt="logo" /></a>
 
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-lg-5 d-flex justify-content-around">
+          <div className="col-lg-3 d-flex justify-content-around">
             <div
               className={[styles.footer_media_query, localstyles.footerNav, "footer-nav"].join(" ")}>
               <ul className={[localstyles.footerList, "d-flex", "flex-column", "flex-wrap"].join(" ")}>
