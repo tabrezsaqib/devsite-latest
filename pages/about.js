@@ -14,7 +14,7 @@ const about = () => {
           </iframe>
         </div>
       </div>
-      <Footer />
+      <Footer isFixed={true} />
     </>
   )
 }
