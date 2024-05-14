@@ -15,7 +15,7 @@ function ConservationRank() {
     const [plantFamily, setPlantFamily] = useState({});
     const [isLoading, setLoading] = useState(true)
     const { all_plants } = useSelector(state => state.post)
-    
+
     const fetchDetails = async () => {
         const arr = []
         for (let i = 0; i < all_plants.length; i++) {
@@ -48,9 +48,9 @@ function ConservationRank() {
     const formatCase = (data) => {
         if (data.search('sna') >= 0 || data.search('Sna') >= 0) {
             return data.replace(/sna/ig, 'SNA')
-        } 
-            return data
-        
+        }
+        return data
+
     }
 
     return (
@@ -71,13 +71,29 @@ function ConservationRank() {
                                     {api.capitalizeFirstLetter(formatCase(family))}
                                 </span>
                             </div></>))
-                        }</div>
+                        }
+                        <div className="listOfPlants  col-sm-12 col-md-12  col-lg-12">
+                            <span className="invasiveLink"
+                                onClick={() => loadPlantFamily("Invasive")}>
+                                Invasive Plants
+                            </span>
+                        </div>
+
+                    </div>
                 </div>}
             <style jsx>{`
         .familyLink {
             color: #0e9d47;
             font-style: italic;
             font-weight:bold;
+            margin-right: 8px;
+            font-size: 23px;
+            cursor: pointer
+        }
+        .invasiveLink {
+            color: #0e9d47;
+            font-weight:bold;
+            font-size: 2rem;
             margin-right: 8px;
             cursor: pointer
         }
