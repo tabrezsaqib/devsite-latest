@@ -50,28 +50,34 @@ const Plants = ({ all_plants, nonwoody_plants, woody_plants, ferns, isLoading, a
           }
           return
         })
-        const filterWithSelector = {}
-        activeFilterList.map((element) => {
-          const listOfSelector = Object.keys(options);
-          for (let i = 0; i < listOfSelector.length; i++) {
-            if (options[listOfSelector[i]].includes(element)) {
-              let type = listOfSelector[i]
-              if (filterWithSelector[type]) filterWithSelector[type].push(element)
-              else filterWithSelector[type] = [element]
-            }
-          }
-        })
+
+
+        console.log(filter)
+        // const filterWithSelector = {}
+        // activeFilterList.map((element) => {
+        //   const listOfSelector = Object.keys(options);
+        //   for (let i = 0; i < listOfSelector.length; i++) {
+        //     if (options[listOfSelector[i]].includes(element)) {
+        //       let type = listOfSelector[i]
+        //       if (filterWithSelector[type]) filterWithSelector[type].push(element)
+        //       else filterWithSelector[type] = [element]
+        //     }
+        //   }
+        // })
+        // console.log(filterWithSelector)
+        let filteredPlants = []
         for (let i = 0; i < Object.keys(filter).length; i++) {
           let element = Object.keys(filter)[i];
-          const filteredPlants = plant_data.filter((item) => {
+          let data = i === 0 ? plant_data : filteredPlants
+          filteredPlants = data.filter((item) => {
             if (element == "plant_type" || element == "type") {
               return filter[element].some(ai => item.acf[element].includes(ai));
             }
             return filter[element].some(ai => item.acf.characteristics[element].includes(ai));
           })
-          console.log(filteredPlants)
-          setFilteredList(filteredPlants)
         }
+        console.log(filteredPlants)
+        setFilteredList(filteredPlants)
       } else {
         return filteredList
       }
@@ -131,7 +137,7 @@ const Plants = ({ all_plants, nonwoody_plants, woody_plants, ferns, isLoading, a
 
   return (
     <div className="row">
-      {plantsError ?<div style={{margin: '5% 0 20% 0', padding:'0 5%'}}> <BrokenPageAlert /> </div>:
+      {plantsError ? <div style={{ margin: '5% 0 20% 0', padding: '0 5%' }}> <BrokenPageAlert /> </div> :
         <>
           <div className="col-lg-3 col-sm-12">
             <div className={styles.sidebar_view_media}>
