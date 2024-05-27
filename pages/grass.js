@@ -4,6 +4,7 @@ import styles from "../styles/grass.module.css"
 import Router from "next/router"
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
+import Head from "next/head";
 
 
 const grass = () => {
@@ -41,27 +42,30 @@ const grass = () => {
   }
   return (
     <>
-    <Navbar />
-    <div>
-      <div className={styles.contactPageContainer}>
-        {/* <iframe 
+      <Head>
+        <title>Grass | New Brunswick</title>
+      </Head>
+      <Navbar />
+      <div>
+        <div className={styles.contactPageContainer}>
+          {/* <iframe 
         className={styles.contactPageContent}
         src="https://api-v2.newbrunswickplants.ca/contact-us/">
         </iframe> */}
-        <h2 className={styles.heading}>
-          <strong>Grasses, Rushes, Sedges</strong>
-        </h2>
-        <div className={styles['table-container']}>
-          <table className={styles['data-table']}>
-            <thead>
-              <tr>
-                <th></th>
-                <th><a className={styles['grass-types-link']} onClick={() => optionSelector("Woody")}>Grasses (<em>Poaceae</em>)</a></th>
-                <th><a className={styles['grass-types-link']} onClick={() => optionSelector("Non-woody")}>Rushes (<em>Juncaceae</em> and <em>Juncaginaceae</em>)</a></th>
-                <th><a className={styles['grass-types-link']} onClick={() => optionSelector("Fern")}>Sedges (<em>Cyperaceae</em>)</a></th>
-              </tr>
-            </thead>
-            <tbody>
+          <h2 className={styles.heading}>
+            <strong>Grasses, Rushes, Sedges</strong>
+          </h2>
+          <div className={styles['table-container']}>
+            <table className={styles['data-table']}>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th><a className={styles['grass-types-link']} onClick={() => optionSelector("Woody")}>Grasses (<em>Poaceae</em>)</a></th>
+                  <th><a className={styles['grass-types-link']} onClick={() => optionSelector("Non-woody")}>Rushes (<em>Juncaceae</em> and <em>Juncaginaceae</em>)</a></th>
+                  <th><a className={styles['grass-types-link']} onClick={() => optionSelector("Fern")}>Sedges (<em>Cyperaceae</em>)</a></th>
+                </tr>
+              </thead>
+              <tbody>
                 <tr>
                   <td><strong>Stem</strong></td>
                   <td>Usually round (<em>or flattened</em>) in cross-section Hollow Nodes conspicuous</td>
@@ -104,20 +108,20 @@ const grass = () => {
                   <td>Capsule subtended by 6 floral scales, each capsule enclosing 3 to many seeds</td>
                   <td>Single achene subtended by a single floral scale</td>
                 </tr>
-            </tbody>
-          </table>
-          <p className={styles['table-paragraph']}>
-            There are a number of plants that have grass-like leaves and when not blooming can 
-            easily be mistaken for a grass, rush, or sedge. Examples include Seaside Plantain (<em><b>Plantago maritima</b></em>), 
-            Strict Blue-eyed-grass (<em><b>Sisyrinchium montanum</b></em>), American Shoreweed (<em><b>Littorella americana</b></em>), 
-            Water Awlwort (<em><b>Subularia aquatica</b></em>), and other members of the Melanthiaceae, Iris, Typhaceae, 
-            Xyricaceae families. Try searching within Non-woody Plants if a grass-like plant you are trying to identify 
-            does not appear in this section.
-          </p>
+              </tbody>
+            </table>
+            <p className={styles['table-paragraph']}>
+              There are a number of plants that have grass-like leaves and when not blooming can
+              easily be mistaken for a grass, rush, or sedge. Examples include Seaside Plantain (<em><b>Plantago maritima</b></em>),
+              Strict Blue-eyed-grass (<em><b>Sisyrinchium montanum</b></em>), American Shoreweed (<em><b>Littorella americana</b></em>),
+              Water Awlwort (<em><b>Subularia aquatica</b></em>), and other members of the Melanthiaceae, Iris, Typhaceae,
+              Xyricaceae families. Try searching within Non-woody Plants if a grass-like plant you are trying to identify
+              does not appear in this section.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   )
 }

@@ -5,17 +5,20 @@ import "react-toastify/dist/ReactToastify.css"
 import Footer from "../components/layouts/Footer";
 import Header from "../components/layouts/Header";
 import Navbar from "../components/layouts/Navbar";
-
+import Head from "next/head";
 
 const admin = () => {
   return (
     <>
-    <Navbar />
-    <>
-      <ToastContainer />
-      <Admin />
-    </>
-    <Footer />
+      <Head>
+        <title>Admin | New Brunswick</title>
+      </Head>
+      <Navbar />
+      <>
+        <ToastContainer />
+        <Admin />
+      </>
+      <Footer />
     </>
   )
 }

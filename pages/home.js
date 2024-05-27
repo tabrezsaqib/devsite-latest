@@ -4,10 +4,14 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import styles from "../styles/home.module.css"
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
+import Head from "next/head";
 
 export default function home() {
   return (
     <div className={styles.flexContent}>
+      <Head>
+        <title>Home | New Brunswick</title>
+      </Head>
       <Navbar />
       <div className="col-md-12 col-lg-12 " >
         <div className="d-flex flex-column text-center">

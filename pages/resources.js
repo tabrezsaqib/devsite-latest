@@ -3,14 +3,18 @@ import React from "react";
 import styles from "../styles/about.module.css"
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
+import Head from "next/head";
 
 
 
 const resources = () => {
   return (
     <>
-    <Navbar />
-    <div>
+      <Head>
+        <title>Resources | New Brunswick</title>
+      </Head>
+      <Navbar />
+      <div>
         <div className={styles.aboutPageContainer}>
           <iframe
             className={styles.aboutPageContent}
@@ -19,7 +23,7 @@ const resources = () => {
         </div>
       </div>
       <Footer isFixed={true} />
-  </>
+    </>
   )
 }
 
