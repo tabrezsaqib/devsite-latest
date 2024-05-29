@@ -14,10 +14,11 @@ const PlantsDetails = ({ plant_details }) => {
     // dispatch(fetchPlantPost(router.query["id"]))
   }, [dispatch, router.isReady, router])
   const data = plant_details[0]
+  console.log(plant_details[0])
   return (
     <div>
        <Head>
-        <title>Plant Details | New Brunswick</title>
+        <title>{plant_details[0].title} | New Brunswick</title>
       </Head>
       <PlantSpeciesDetails plant_details={data} />
     </div>
