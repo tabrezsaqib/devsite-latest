@@ -11,8 +11,9 @@ import * as localStore from "../../generics/localStore"
 import styles from "../../styles/SearchResults.module.css"
 import TablePagination from '@mui/material/TablePagination';
 import BrokenPageAlert from "../../generics/brokenPageAlert";
+import Router from "next/router"
 
-const SearchResults = ({ search_results , searchError}) => {
+const SearchResults = ({ search_results, searchError }) => {
 
   const [hasSearchKeyword, setHasSearchKeyWord] = useState(false)
   const [isLoading, setLoading] = useState(true)
@@ -52,7 +53,14 @@ const SearchResults = ({ search_results , searchError}) => {
   ])
 
   useEffect(() => {
-    if (search_results.length > 0) {
+    if (search_results.length === 1) {
+      Router.push({
+        pathname: `/plants/${search_results[0].slug}`,
+        query: { type: search_results[0].acf.plant_type },
+      }).then(() => {
+      })
+    }
+    else if (search_results.length > 0) {
       setCurrentItems(search_results.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage))
     } else {
       setCurrentItems([])
@@ -66,7 +74,7 @@ const SearchResults = ({ search_results , searchError}) => {
 
 
   return (
-    <> {searchError? <div style={{margin: '5% 0 20% 0', padding:'0 5%'}}> <BrokenPageAlert /> </div> : <>
+    <> {searchError ? <div style={{ margin: '5% 0 20% 0', padding: '0 5%' }}> <BrokenPageAlert /> </div> : <>
       <div>
         <span className="breadcrumb">
           {hasSearchKeyword && search_results.length > 0 && `${search_results.length} results found for ${router.query.keyword}`}
