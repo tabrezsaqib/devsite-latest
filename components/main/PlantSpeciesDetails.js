@@ -102,7 +102,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
             <div className="col-lg-3" style={{ borderRight: '1px solid #e0e1e3' }}>
               <div className="side-bar">
                 <div className={styles.intro_media_mobile}>
-                  <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-between d-print-none">
                     <span>&nbsp;</span>
                     <a className="d-flex back-arrow" onClick={() => router.back()}>
                       <h4>
@@ -165,7 +165,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     plant_details.acf.image_url.length > 6 && (
                       <a
                         data-bs-toggle="modal"
-                        className="view-more"
+                        className="view-more d-print-none"
                         data-bs-target="#exampleModal"
                         onClick={() => slideShow(slideIndex)}>
                         View more
@@ -182,14 +182,14 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     <strong>Unique Characteristics</strong>
                   </p>
                   <div className="row">
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                    <div className="col-sm-10 col-md-10 col-lg-12 col-xl-6">
                       <div className="unique-characteristics">
                         {ReactHtmlParser(
                           plant_details.acf.unique_characteristics
                         )}
                       </div>
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                    <div className="col-sm-2 col-md-2 col-lg-12 col-xl-6">
                       <div
                         className={
                           plant_details.featured_image.image_url !== false || plant_details.featured_image.image_url !== null
@@ -214,11 +214,11 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                   </div>
                 </div>
                 <br></br>
-                <div>
+                <div class="d-none d-lg-block">
                   {plant_details.acf.distribution_map_id ? <>
                     <div className="row">
-                      <div className="col-md-12 col-lg-4">  <strong>Distribution </strong></div>
-                      <div className="col-md-12  col-lg-8">
+                      <div className="col-md-3 col-lg-4">  <strong>Distribution </strong></div>
+                      <div className="col-md-3  col-lg-8">
                         <span style={{ float: 'right', fontSize: '12px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
                           Source: AC CDC, 2023
                           <span style={{ float: 'right', fontSize: '12px', textAlign: 'right' }}>
@@ -231,7 +231,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                      <div className="col-sm-6 col-md-6 col-lg-12 col-xl-12">
                         <div
                           className={
                             plant_details.acf.distribution_map_id !== ''
@@ -247,7 +247,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                             </div>
                           ) : (
                             <img
-                              src={`../../images/maps/${plant_details.acf.distribution_map_id}.jpg`}
+                              src='https://devsite-nbplants.vercel.app/images/maps/PGPIN01020_map_2023.png'
                               alt="Distribution map" onContextMenu={(e) => e.preventDefault()}
                             />
                           )}
@@ -256,7 +256,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     </div></> : ""}
                 </div>
                 {plant_details.acf.similar_species &&
-                  <div >
+                  <div class="d-none d-lg-block">
                     <br></br>
                     <p><strong>Explore Similar Plants</strong></p>
                     <FamilyDetails plant_id={plant_details.acf.similar_species} />
@@ -418,7 +418,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                   "content-section",
                 ].join(" ")}>
                 <div className={styles.intro_media_desktop}>
-                  <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-between d-print-none">
                     <span>&nbsp;</span>
                     <a className="d-flex back-arrow" onClick={() => router.back()}>
                       <h4>
@@ -1325,6 +1325,55 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                 )} */}
                 </div>
               </div>
+              <div class="d-lg-none d-xl-none d-sm-block d-md-block">
+                {plant_details.acf.distribution_map_id ? <>
+                  <div className="row">
+                    <div className="col-md-3 col-lg-4">  <strong>Distribution </strong></div>
+                    <div className="col-md-3  col-lg-8">
+                      <span style={{ float: 'right', fontSize: '12px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                        Source: AC CDC, 2023
+                        <span style={{ float: 'right', fontSize: '12px', textAlign: 'right' }}>
+                          <div> <span className="grey-dot"></span>
+                            Recent (&gt;= 2000)</div>
+                          <div> <span className="green-dot"></span>
+                            Historic (&lt; 2000)</div>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-sm-6 col-md-6 col-lg-12 col-xl-12">
+                      <div
+                        className={
+                          plant_details.acf.distribution_map_id !== ''
+                            ? "featured-image"
+                            : "featured-image disable-pointer-events"
+                        }
+                        data-bs-toggle="modal"
+                        data-bs-target="#distribution-map">
+                        {plant_details.acf.distribution_map_id == '' ? (
+                          <div className="d-flex flex-column text-center stock-img-container">
+                            <img src="../../images/no_result_found.png" alt="" onContextMenu={(e) => e.preventDefault()} />
+                            <span>Oops! No images found!</span>
+                          </div>
+                        ) : (
+                          <img
+                            src='https://devsite-nbplants.vercel.app/images/maps/PGPIN01020_map_2023.png'
+                            alt="Distribution map" onContextMenu={(e) => e.preventDefault()}
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </div></> : ""}
+              </div>
+              {plant_details.acf.similar_species &&
+                <div class="d-lg-none d-xl-none d-sm-block d-md-block">
+                  <br></br>
+                  <p><strong>Explore Similar Plants</strong></p>
+                  <FamilyDetails plant_id={plant_details.acf.similar_species} />
+                  {/* <ListPlantSpecies filteredList={plantFamily} isLoading={isLoading} /> */}
+                </div>
+              }
             </div>
           </div>
         ) : (
@@ -1344,11 +1393,12 @@ const PlantSpeciesDetails = ({ plant_details }) => {
           margin: 2px;
           overflow: hidden;
           border: 1px solid #e0e1e3;
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
+        
+        }
+        .img-container  img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         .featured-img-container {
           border-radius: 12px;
@@ -1357,45 +1407,44 @@ const PlantSpeciesDetails = ({ plant_details }) => {
           height: 250px;
           overflow: hidden;
           border: 1px solid #e0e1e3;
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-          }
+        }
+        .featured-img-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
         }
         .loader {
           height: 300px;
-          img {
-            width: 80px;
-          }
+          
         }
-        .label-value-section {
+        .loader img {
+          width: 80px;
+        }
           /* Large screens (1405px upwards) */
-          @media only screen and (min-width: 1405px) {
+          .label-value-section  @media only screen and (min-width: 1405px) {
             width: 50%;
           }
           /*Retina MacBook pro*/
-          @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+          .label-value-section  @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
             only screen and (min-device-pixel-ratio: 1.5) {
             width: 50%;
           }
 
           /* iPhones media query 2436x1125px at 458ppi */
-          @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+          .label-value-section @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
             width: 100%;
           }
 
           /* Smartphones in portrait mode (0-479px) */
-          @media only screen and (max-width: 479px) {
+          .label-value-section @media only screen and (max-width: 479px) {
             width: 100%;
           }
 
           /* ----------- iPad Pro ----------- */
           /* Portrait and Landscape */
-          @media only screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+          .label-value-section @media only screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
             width: 100%;
           }
-        }
         .each-slide > div {
           display: flex;
           align-items: center;
@@ -1423,13 +1472,12 @@ const PlantSpeciesDetails = ({ plant_details }) => {
           border: 1px solid #e0e1e3;
           border-radius: 8px;
 
-          img {
-            img {
-              width: 100%;
-              height: 100%;
-              object-fit: contain;
-            }
-          }
+        }
+        
+        .stock-img-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
         }
         .familyLink{
           color: #0e9d47;
@@ -1440,19 +1488,19 @@ const PlantSpeciesDetails = ({ plant_details }) => {
         .slider {
           position: relative;
           h2[name="prev"]:hover,
-          h2[name="next"]:hover {
-            cursor: pointer;
-          }
-          h2[name="prev"] {
-            position: absolute;
-            left: 1%;
-            top: 45%;
-          }
-          h2[name="next"] {
-            position: absolute;
-            right: 1%;
-            top: 45%;
-          }
+        }
+        .slider h2[name="next"]:hover {
+          cursor: pointer;
+        }
+        .slider  h2[name="prev"] {
+          position: absolute;
+          left: 1%;
+          top: 45%;
+        }
+        .slider  h2[name="next"] {
+          position: absolute;
+          right: 1%;
+          top: 45%;
         }
         .rtc-content {
           background-color: #f6f7f9;
@@ -1467,28 +1515,28 @@ const PlantSpeciesDetails = ({ plant_details }) => {
         }
         .featured-image {
           overflow: hidden;
-          img {
-            border-radius: 10px;
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-          }
+          
+        }
+        .featured-image img {
+          border-radius: 10px;
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
         }
         .unique-characteristics {
           margin-left: 10px;
           font-size: 14px;
-          :global(ol) {
-            padding: 0px !important;
-          }
+         
+        }
+        .unique-characteristics :global(ol) {
+          padding: 0px !important;
         }
         .featured-image:hover {
           cursor: pointer;
         }
-        .modal-image-container {
-          img {
+        .modal-image-container  img {
             width: 100%;
             height: 80vh;
-          }
         }
         .accordion-button:not(.collapsed) {
           color: #1d9d47;
@@ -1514,10 +1562,11 @@ const PlantSpeciesDetails = ({ plant_details }) => {
           h4,
           p,
           h4:hover,
-          p:hover {
-            cursor: pointer;
-            color: #167a37;
-          }
+          
+        }
+        p:hover {
+          cursor: pointer;
+          color: #167a37;
         }
         .view-more {
           cursor: pointer;
