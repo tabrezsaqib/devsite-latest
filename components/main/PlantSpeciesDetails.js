@@ -11,7 +11,11 @@ import BrokenPageAlert from "../../generics/brokenPageAlert";
 
 import Navbar from "../layouts/Navbar"
 import Footer from "../layouts/Footer"
-import { useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import {
+  getPopoverData,
+  triggerToolTip,
+} from "../../redux/actions/getPlantsAction"
 import FamilyDetails from "../families/familyDetails"
 
 
@@ -21,6 +25,9 @@ const PlantSpeciesDetails = ({ plant_details }) => {
   const slideRef = useRef()
   const router = useRouter()
   const dispatch = useDispatch()
+
+  const { popoverData, popoverStatus } = useSelector(state => state.post)
+  console.log(popoverData, popoverStatus)
   const API_URL = process.env.API_URL
 
   useEffect(() => {
@@ -36,6 +43,9 @@ const PlantSpeciesDetails = ({ plant_details }) => {
     };
   }, [router])
 
+  const cancelToolTip = (status) => {
+    dispatch(triggerToolTip(status))
+  }
 
   const slideShow = (index) => {
     setSlide(true)
@@ -74,6 +84,12 @@ const PlantSpeciesDetails = ({ plant_details }) => {
     } else {
       return data
     }
+  }
+
+
+  const triggerPopUp = (status) => {
+    dispatch(triggerToolTip(status))
+    dispatch(getPopoverData('invasive-species', status))
   }
 
   const refresh = () => {
@@ -115,6 +131,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     <div className="d-flex">
                       <h2 className="heading">
                         <strong>{plant_details.acf.common_name}</strong>
+
                       </h2>
                       <h4 className="align-self-center pt-2">
                         <strong>
@@ -122,6 +139,14 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                             &nbsp;&nbsp;
                             {`${plant_details.title}`}
                           </i>
+                          {plant_details.acf.characteristics.invasive &&   <h6
+                            style={{ margin: '0 8px', cursor: 'pointer' }}
+                            data-bs-toggle="modal"
+                            className={[styles.tooltipPopUp, "tooltipPopUp align-self-center"].join(" ")}
+                            data-bs-target="#sideNavPopUp12"
+                            onClick={() => triggerPopUp(false)}>
+                            <i className="bi bi-info-circle-fill" />
+                          </h6>}
                         </strong>
                       </h4>
                     </div>
@@ -263,6 +288,39 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     {/* <ListPlantSpecies filteredList={plantFamily} isLoading={isLoading} /> */}
                   </div>
                 }
+                <div className="d-flex align-self-center">
+                  <div
+                    style={{ zIndex: '10600' }}
+                    className="modal fade"
+                    id="sideNavPopUp12"
+                    role="dialog"
+                    tabIndex="-1"
+                    aria-labelledby="sideNavPopUpLabel"
+                    aria-hidden="true">
+                    <div className="modal-dialog">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h5 className="modal-title" id="sideNavPopUpLabel">
+                            {
+                              popoverData.length > 0 &&
+                              popoverData[0].acf.glossary_name}
+                          </h5>
+                          <button
+                            type="button"
+                            onClick={() => cancelToolTip(false)}
+                            className="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                          {
+                            popoverData.length > 0 &&
+                            ReactHtmlParser(popoverData[0].acf.description)}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div
                   style={{ zIndex: '10600' }}
                   className="modal fade"
@@ -438,8 +496,18 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                             &nbsp;&nbsp;
                             {plant_details.title}
                           </i>
+
                         </strong>
                       </h4>
+
+                      {plant_details.acf.characteristics.invasive &&    <h6
+                        style={{ margin: '0 8px', cursor: 'pointer' }}
+                        data-bs-toggle="modal"
+                        className={[styles.tooltipPopUp, "tooltipPopUp align-self-center"].join(" ")}
+                        data-bs-target="#sideNavPopUp12"
+                        onClick={() => triggerPopUp(false)}>
+                        <i className="bi bi-info-circle-fill" />
+                      </h6>}
                     </div>
                     {plant_details.acf.synonyms_english && (
                       <div className="d-flex">
