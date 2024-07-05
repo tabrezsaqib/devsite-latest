@@ -40,53 +40,53 @@ function Navbar(props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Link href="/home" as="/home" legacyBehavior>
-        <a>
-          <img
-            src="../../images/logo.png"
-            alt="new brunswick plants logo"
-          />
-        </a>
-      </Link>
-      <Divider />
-      <List>
+    <div>
+      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+        <Link href="/home" as="/home" legacyBehavior>
+          <a>
+            <img
+              src="../../images/logo.png"
+              alt="new brunswick plants logo"
+            />
+          </a>
+        </Link>
+        <Divider />
+        <List>
+          <Link href='/home' as="/home" legacyBehavior>
+            <ListItem key='home' disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <a >Home</a>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link href='/plants/?type=all' as="/plants/?type=all" legacyBehavior>
+            <ListItem key='plants' disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <a >Species</a>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link href='/plantFamilies' as="/plantFamilies" legacyBehavior>
+            <ListItem key='plantFamilies' disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <a >Families</a>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link href='/about' as="/about" legacyBehavior>
+            <ListItem key='about' disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <a >About</a>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        </List>
 
-        <Link href='/home' as="/home" legacyBehavior>
-          <ListItem key='home' disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <a >Home</a>
-            </ListItemButton>
-          </ListItem>
-        </Link>
-        <Link href='/plants/?type=all' as="/plants/?type=all" legacyBehavior>
-          <ListItem key='plants' disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <a >Species</a>
-            </ListItemButton>
-          </ListItem>
-        </Link>
-            <Link href='/plantFamilies' as="/plantFamilies" legacyBehavior>
-        <ListItem key='plantFamilies' disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }}>
-              <a >Families</a>
-          </ListItemButton>
-        </ListItem>
-            </Link>
-            <Link href='/about' as="/about" legacyBehavior>
-        <ListItem key='about' disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }}>
-              <a >About</a>
-          </ListItemButton>
-        </ListItem>
-            </Link>
-        <ListItem key='about' disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }}>
-            <SearchForm />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Box>
+      </Box>
+      <div style={{ margin: '0 10px' }}>
+        <SearchForm />
+      </div>
+    </div>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -95,7 +95,7 @@ function Navbar(props) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar color="inherit" component="nav">
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' ,minHeight: '74px'}}>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', minHeight: '74px' }}>
           <IconButton
             color="black"
             aria-label="open drawer"
@@ -113,7 +113,7 @@ function Navbar(props) {
               />
             </a>
           </Link>
-          <Box sx={{ display: { sm: 'none', xs: 'none', md: 'block', float: 'right' } }}>
+          <Box sx={{ display: { sm: 'none', xs: 'none', md: 'flex', float: 'right' } }}>
             <Button color="success" key="home" sx={{ color: 'black', textTransform: 'none' }}>
               <Link href='/home' as="/home" legacyBehavior>
                 <a style={{ color: 'inherit' }}>Home</a>
