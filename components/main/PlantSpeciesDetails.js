@@ -556,6 +556,8 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                       </p>
                     </div>
                   )}
+                </div>
+                <div className="d-flex label-value-section mt-2">
                   {plant_details.acf.type.length !== 0 &&
                     plant_details.acf.type.map((item, index) => (
                       <div className="d-flex label-value-section" key={index}>
@@ -571,7 +573,6 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                       </div>
                     ))}
                 </div>
-
                 <h4>
                   <strong>Characteristics</strong>
                 </h4>
