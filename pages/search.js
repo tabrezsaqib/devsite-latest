@@ -6,7 +6,6 @@ import PlantSpeciesDetails from "../components/main/PlantSpeciesDetails";
 import { connect } from "react-redux"
 
 const search = ({ search_results }) => {
-  console.log(search_results)
   return (
     <>
       <Head>

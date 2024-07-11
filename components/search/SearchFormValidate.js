@@ -72,8 +72,12 @@ const SearchFormValidate = ({ submitSearchQuery, search_bar }) => {
                   aria-label="search"
                   edge="end"
                   onClick={handleSubmit}
+                  sx={{ backgroundColor: '#0e9d47', borderRadius:0, 
+                  "&:hover": {
+                    backgroundColor: '#0e9d47'
+                  }}}
                 >
-                  <SearchSharp sx={{ color: '#0e9d47' }} />
+                  <SearchSharp sx={{ color: 'white' }} />
                 </IconButton>
               </InputAdornment>}
               placeholder="Search Plants.."
