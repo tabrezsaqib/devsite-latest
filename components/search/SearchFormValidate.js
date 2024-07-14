@@ -67,6 +67,7 @@ const SearchFormValidate = ({ submitSearchQuery, search_bar }) => {
                   handleSubmit()
                 }
               }}
+              sx={{paddingRight:'13px'}}
               endAdornment={<InputAdornment position="end">
                 <IconButton
                   aria-label="search"
