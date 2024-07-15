@@ -15,22 +15,10 @@ import { DialogContent, DialogActions, Button, Divider, Stack, IconButton } from
 import { Close, Print } from "@mui/icons-material";
 
 function PlantListModal({ openModal, handleModal }) {
-    const [plantFamily, setPlantFamily] = useState({});
-    const [isLoading, setLoading] = useState(true)
+    const [isLoading, setLoading] = useState(false)
     const { filteredPlantList } = useSelector(state => state.post)
-    console.log(filteredPlantList)
 
-    const fetchDetails = async () => {
-        const a = Object.groupBy(filteredPlantList, data => (data.acf.plant_family));
-        setLoading(false)
-        setPlantFamily(a);
-    }
-
-    useEffect(() => {
-        if (filteredPlantList.length > 0)
-            fetchDetails();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filteredPlantList])
+   
 
     return (
         <>

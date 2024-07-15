@@ -49,6 +49,7 @@ export default function SelectedFilter() {
         inflorescence, fruit_type, fruit_color } = useSelector(state => state.selector);
     const allType = useSelector(state => state.selector);
     const [openModal, setOpenModal] = React.useState(false);
+    const { filteredPlantList } = useSelector(state => state.post)
     const dispatch = useDispatch();
 
     const [listOfSelector, setListOfSelector] = React.useState({})
@@ -270,7 +271,7 @@ export default function SelectedFilter() {
                 <Stack direction="row" spacing={1} justifyContent="space-between">
                     <div style={{ marginBottom: '10px', fontSize: '14px' }}> {activeFilterList.length} item(s) Selected.
                         <span className='linklike' onClick={handleClearAll} ><b>Clear All</b></span></div>
-                    <Button variant="outlined" size='small' sx={{ color: '#0e9d47', borderColor: '#0e9d47', m: '10px' }} onClick={handleModal}><b>Plants List</b></Button>
+                    {filteredPlantList.length>0 &&<Button variant="outlined" size='small' sx={{ color: '#0e9d47', borderColor: '#0e9d47', m: '10px' }} onClick={handleModal}><b>Plants List</b></Button>}
                 </Stack>}
             <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
                 {Object.keys(listOfSelector).map((option) => (
