@@ -9,11 +9,13 @@ import loaderStyles from "../../styles/Loader.module.scss"
 import LoaderThumbnail from "./LoaderThumbnail"
 import SelectedFilter from "./selectedFilter"
 import { Alert, AlertTitle } from "@mui/material"
+import { setFilteredPlantList } from "../../redux/actions/getPlantsAction"
 
 const ListPlantSpecies = ({ activeFilterList, isLoading, filteredList, pg, rpg }) => {
 
   const loaderDataCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   const [filteredListSorted, setFilteredListSorted] = useState([])
+  const dispatch = useDispatch();
   useEffect(() => {
     console.log(filteredList)
     const sorted = [...filteredList].sort((a, b) => {
@@ -22,8 +24,8 @@ const ListPlantSpecies = ({ activeFilterList, isLoading, filteredList, pg, rpg }
       else
         return a.title.localeCompare(b.title)
     });
-    console.log(sorted)
     setFilteredListSorted(sorted)
+    dispatch(setFilteredPlantList(sorted))
   }, [filteredList])
 
   return (
@@ -52,10 +54,10 @@ const ListPlantSpecies = ({ activeFilterList, isLoading, filteredList, pg, rpg }
                   </Link>
                 </div> :
                 <div>
-                <Alert severity="error" >
-                <AlertTitle>Plant Not Found </AlertTitle>
-               This plant is not available now. Please check back again later.
-            </Alert>
+                  <Alert severity="error" >
+                    <AlertTitle>Plant Not Found </AlertTitle>
+                    This plant is not available now. Please check back again later.
+                  </Alert>
                 </div>
             )
           })
@@ -91,12 +93,11 @@ const ListPlantSpecies = ({ activeFilterList, isLoading, filteredList, pg, rpg }
           height: 100%;
           width: 100%;
         }
-        .img-container {
-          img {
+        .img-container .  img {
             top: 50%;
             left: 58%;
             width: 80px;
-          }
+          
         }
 
         :global(.thumbnails:hover) {
