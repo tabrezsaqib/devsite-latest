@@ -29,10 +29,10 @@ function PlantListModal({ openModal, handleModal }) {
                             Plant List
                         </div>
                         <div>
-                            <Button  color="success"  variant="contained" endIcon={<Print />} onClick={() => { window.print() }}>
+                            <Button  sx={{displayPrint: 'none'}} color="success"  variant="contained" endIcon={<Print />} onClick={() => { window.print() }}>
                                 Print
                             </Button>
-                            <IconButton sx={{ ml: '10px' }} aria-label="close" onClick={handleModal}>
+                            <IconButton sx={{ ml: '10px',displayPrint: 'none' }} aria-label="close" onClick={handleModal}>
                                 <Close />
                             </IconButton>
                         </div>
@@ -47,7 +47,7 @@ function PlantListModal({ openModal, handleModal }) {
 
                             <div className="row " >
                                 {filteredPlantList.map((family, i) => (
-                                    <>  <div key={i} className="listOfPlants  col-sm-12 col-md-12  col-lg-6 ">
+                                    <>  <div key={i} className="listOfPlants  col-sm-12 col-md-6  col-lg-6 ">
                                         <Link legacyBehavior
                                             href={{
                                                 pathname: `/plants/${family.slug}`,
@@ -70,7 +70,7 @@ function PlantListModal({ openModal, handleModal }) {
 
                 <Divider></Divider>
                 <DialogActions>
-                    <Button sx={{ color: '#0e9d47'}} onClick={handleModal}>Close</Button>
+                    <Button sx={{ color: '#0e9d47' ,displayPrint: 'none'}} onClick={handleModal}>Close</Button>
                 </DialogActions>
             </Dialog>
             <style jsx>{`
