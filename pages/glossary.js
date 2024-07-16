@@ -1,13 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import styles from "../styles/glossary.module.css"
+import styles from "../styles/about.module.css"
 import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
 import Head from "next/head";
 
-
-function Glossary() {
-
+const Glossary = () => {
   return (
     <>
       <Head>
@@ -15,19 +13,18 @@ function Glossary() {
       </Head>
       <Navbar />
       <div>
-        <div className={styles.glossaryPageContainer}>
-
+        <div className={styles.aboutPageContainer}>
           <iframe
-            className={styles.glossaryPageContent}
-            src="https://api-v2.newbrunswickplants.ca/glossary/"
-            frameBorder="0"
-          >
+            className={styles.aboutPageContent}
+            src="https://api-v3.newbrunswickplants.ca/glossary/">
           </iframe>
         </div>
       </div>
-      <Footer />
+      <Footer isFixed={true} />
     </>
   )
 }
 
 export default Glossary;
+
+
