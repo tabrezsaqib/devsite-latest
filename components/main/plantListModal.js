@@ -46,7 +46,7 @@ function PlantListModal({ openModal, handleModal }) {
 
     return (
         <>
-            <Dialog onClose={handleModal} open={openModal} maxWidth="md">
+            <Dialog onClose={handleModal} open={openModal} maxWidth="md" className="printDialog">
                 <DialogTitle sx={{ pr: 0 }}>
                     <Stack direction="row" justifyContent="space-between">
                         <div>
@@ -89,19 +89,19 @@ function PlantListModal({ openModal, handleModal }) {
                                                 pathname: `/plants/${family.slug}`,
                                                 query: { type: family.acf.plant_type },
                                             }}>
-                                            <a className="familyLink">  { alignment === 'latin'?  ReactHtmlParser(family.acf.latin): ReactHtmlParser(family.acf.common_name)}</a>
+                                            <a className="familyLink">  {alignment === 'latin' ? ReactHtmlParser(family.acf.latin) : ReactHtmlParser(family.acf.common_name)}</a>
                                         </Link> /
                                         <Link legacyBehavior
                                             href={{
                                                 pathname: `/plants/${family.slug}`,
                                                 query: { type: family.acf.plant_type },
                                             }}>
-                                            <a className="familyLink"> { alignment === 'latin'?  ReactHtmlParser(family.acf.common_name): ReactHtmlParser(family.acf.latin)} </a>
+                                            <a className="familyLink"> {alignment === 'latin' ? ReactHtmlParser(family.acf.common_name) : ReactHtmlParser(family.acf.latin)} </a>
                                         </Link>
 
 
                                     </div></>
-                                    ))
+                                ))
                                 }</div>
                         </div>}
                 </DialogContent>
@@ -132,6 +132,10 @@ function PlantListModal({ openModal, handleModal }) {
                 .listOfPlants{
                     text-align:left;
                     margin: 10px 0;
+                    
+                }
+                .printDialog {
+                    max-width: 100vw!important;
                 }
               }`
             }</style>
