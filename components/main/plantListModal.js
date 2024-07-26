@@ -34,7 +34,10 @@ function PlantListModal({ openModal, handleModal }) {
             doc.addPage();
             currentY = marginTop;
         }
-        doc.text(`${text.acf.latin} / ${text.acf.common_name}`, 10, currentY + 10);
+        if (alignment === 'latin')
+            doc.text(`${text.acf.latin} / ${text.acf.common_name}`, 10, currentY + 10);
+        else
+            doc.text(`${text.acf.common_name ? text.acf.common_name : '-'} / ${text.acf.latin ? text.acf.latin : '-'}`, 10, currentY + 10);
         currentY += lineHeight;
     };
 
@@ -48,9 +51,13 @@ function PlantListModal({ openModal, handleModal }) {
         doc.setFontSize(22);
         doc.setFont("helvetica", "bold");
         doc.text("Plant List", 10, 10);
+        doc.setFontSize(13);
+        doc.text(`(Sorted By  ${alignment === 'latin' ? "Latin Name" : "English Name"})`, 50, 10);
 
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "normal");
+        doc.setFontSize(13);
+
+        doc.setTextColor('#0e9d47');
+        doc.setFont("helvetica", "italic");
         for (let i = 1; i <= plantList.length; i++) {
             addText(plantList[i - 1])
         }
