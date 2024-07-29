@@ -1554,29 +1554,37 @@ const PlantSpeciesDetails = ({ plant_details }) => {
           width: 80px;
         }
           /* Large screens (1405px upwards) */
-          .label-value-section  @media only screen and (min-width: 1405px) {
+          @media only screen and (min-width: 1405px)  {.label-value-section {
             width: 50%;
-          }
+          }}
           /*Retina MacBook pro*/
-          .label-value-section  @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+            @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
             only screen and (min-device-pixel-ratio: 1.5) {
+              .label-value-section{
             width: 50%;
+              }
           }
 
           /* iPhones media query 2436x1125px at 458ppi */
-          .label-value-section @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+          @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+            .label-value-section{
             width: 100%;
+            }
           }
 
           /* Smartphones in portrait mode (0-479px) */
-          .label-value-section @media only screen and (max-width: 479px) {
+           @media only screen and (max-width: 479px) {
+            .label-value-section{
             width: 100%;
+            }
           }
 
           /* ----------- iPad Pro ----------- */
           /* Portrait and Landscape */
-          .label-value-section @media only screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+           @media only screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+            .label-value-section{
             width: 100%;
+            }
           }
         .each-slide > div {
           display: flex;
