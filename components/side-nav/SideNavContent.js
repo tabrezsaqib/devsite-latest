@@ -7,6 +7,7 @@ import { useRouter } from "next/router"
 import SideNavPopover from "./SideNavPopover"
 import React, { useState } from "react"
 import { useEffect } from "react"
+import CustomizedTooltips from "./Tooltip"
 
 const SideNavContent = ({
   options,
@@ -48,7 +49,7 @@ const SideNavContent = ({
   useEffect(() => {
     if (router.query.type == "Fern" || plant_type[0] === true) {
       setSelector({ ...options, 'leaf_divisions': options.leaf_divisions.slice(0, 4), 'stems': options.stems.slice(0, 3) })
-    }else{
+    } else {
       setSelector(options)
     }
   }, [options, router.query.type, plant_type])
@@ -317,7 +318,7 @@ const SideNavContent = ({
         {optionNames.map((item) => (
           <div key={item.key}>
             {item.group == "all" && (
-              <div id={item.key}>
+              <div id={item.key} style={{ justifyContent: 'space-between' }}>
                 <h6 className="selector-heading">
                   <i className="bi bi-check2-square" />
                   &nbsp;&nbsp;
@@ -379,12 +380,8 @@ const SideNavContent = ({
                             </h6>
                             {(item.key == "inflorescence" ||
                               item.key == "petal_symmetry") && (
-                                <SideNavPopover
-                                  triggerPopUp={() =>
-                                    triggerPopUp(item.key, true)
-                                  }
-                                  popoverData={popoverData}
-                                  popoverStatus={popoverStatus}
+                                <CustomizedTooltips
+                                  name={item.key}
                                 />
                               )}
                           </div>
