@@ -3,7 +3,8 @@ import Footer from "../components/layouts/Footer";
 import Navbar from "../components/layouts/Navbar";
 import Head from "next/head";
 import PlantSpeciesDetails from "../components/main/PlantSpeciesDetails";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
+import styles from "../styles/about.module.css"
 
 const search = ({ search_results }) => {
   return (
@@ -12,12 +13,15 @@ const search = ({ search_results }) => {
         <title>Search | New Brunswick</title>
       </Head>
       <Navbar />
-      <div className="pt-4">
-        {search_results.length === 1 ?
-          <PlantSpeciesDetails plant_details={search_results[0]} /> :
-          <SearchResults itemsPerPage={20} />}
+      <div>
+        <div className={styles.aboutPageContainer}>
+          {search_results.length === 1 ?
+            <PlantSpeciesDetails plant_details={search_results[0]} /> :
+            <SearchResults itemsPerPage={20} />}
+        </div>
       </div>
-      <Footer />
+      <Footer isFixed={search_results.length > 6 ? false : true} />
+
     </>
   )
 }
