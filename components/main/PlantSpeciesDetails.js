@@ -9,6 +9,7 @@ import ReactHtmlParser from "react-html-parser"
 import styles from "../../styles/Global.module.scss"
 import BrokenPageAlert from "../../generics/brokenPageAlert";
 import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
+import Grid from '@mui/material/Grid';
 
 import Navbar from "../layouts/Navbar"
 import Footer from "../layouts/Footer"
@@ -1278,45 +1279,33 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                             aria-labelledby="headingThree"
                             data-bs-parent="#accordion3">
                             <div className="accordion-body">
-                              <div className="d-flex flex-wrap">
+                              <Grid container spacing={2}>
                                 {plant_details.acf.characteristics.fruit_type
                                   .length !== 0 &&
                                   plant_details.acf.characteristics.fruit_type.map(
                                     (item, index) => (
-                                      <div
-                                        className="d-flex label-value-section"
-                                        key={index}>
-                                        <p>
-                                          <strong>Fruit Type: &nbsp;</strong>
-                                        </p>
-                                        <div>
-                                          <p>
-                                            {api.capitalizeFirstLetter(item)} &nbsp;
-                                          </p>
-                                        </div>
-                                      </div>
+                                      <Grid item xs={12} sm={12} md={6} lg={6} key={index}>
+                                        <strong>Fruit Type: &nbsp;</strong>
+                                        {api.capitalizeFirstLetter(item)} &nbsp;
+                                      </Grid>
                                     )
                                   )}
                                 {plant_details.acf.characteristics.fruit_length && (
-                                  <div className="d-flex label-value-section">
-                                    <p>
-                                      <strong>Fruit Size: &nbsp;</strong>
-                                    </p>
+                                  <Grid item xs={12} sm={12} md={6} lg={6} >
+                                    <strong>Fruit Size: &nbsp;</strong>
                                     {api.capitalizeFirstLetter(
                                       plant_details.acf.characteristics.fruit_length
                                     )}
-                                  </div>
+                                  </Grid>
                                 )}
                                 {plant_details.acf.characteristics.fruit_color
                                   .length !== 0 && (
-                                    <div className="d-flex label-value-section">
-                                      <p>
+                                    <Grid item xs={12} sm={12} md={6} lg={6} >
+                                      
                                         <strong>Fruit Colour: &nbsp;</strong>
-                                      </p>
                                       {plant_details.acf.characteristics.fruit_color.map(
                                         (item, index) => (
-                                          <div className="d-flex" key={index}>
-                                            <p>
+                                          <>
                                               {api.capitalizeFirstLetter(item)}
                                               {item !==
                                                 plant_details.acf.characteristics.fruit_color
@@ -1326,11 +1315,10 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                                               ) : (
                                                 ""
                                               )}
-                                            </p>
-                                          </div>
+                                          </>
                                         )
                                       )}
-                                    </div>
+                                    </Grid>
                                   )}
                                 {plant_details.acf.characteristics.seed_dispersal && (
                                   <div className="d-flex label-value-section">
@@ -1342,10 +1330,11 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                                     )}
                                   </div>
                                 )}
-                              </div>
+                              </Grid>
                             </div>
                           </div>
                         </div>
+
                       </div>
                     )}
                   {plant_details.acf.varieties && (
