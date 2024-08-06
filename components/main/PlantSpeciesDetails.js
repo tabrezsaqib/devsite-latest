@@ -681,7 +681,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                   )}
 
                   {/* FLOWERS */}
-                  {(router.query.type !== "Fern" && (plant_details.acf.characteristics.bloom_time ||
+                  {(plant_details.acf.plant_type !== "Fern" && (plant_details.acf.characteristics.bloom_time ||
                     plant_details.acf.characteristics.flower_colour.length !== 0 || plant_details.acf.characteristics.inflorescence.length !== 0 ||
                     plant_details.acf.characteristics.number_flowers || plant_details.acf.characteristics.number_petals ||
                     plant_details.acf.characteristics.petal_symmetry.length !== 0 || plant_details.acf.characteristics.lip_shape.length !== 0 ||
@@ -810,9 +810,11 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                                   </Grid>
                                 )}
                                 {plant_details.acf.characteristics.flower_description && (
-                                  <Grid item xs={12} sm={12} md={6} lg={6} >
+                                  <Grid item xs={12} sm={12} md={12} lg={12} >
                                     <strong>Flower Description: &nbsp;</strong>
-                                    {plant_details.acf.characteristics.flower_description}
+                                    <div className="desc-content">
+                                      {ReactHtmlParser(plant_details.acf.characteristics.flower_description)}
+                                    </div>
                                   </Grid>
                                 )}
                                 {/* {plant_details.acf.characteristics.stipule_shape
@@ -1027,26 +1029,22 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                                     }
                                   </Grid>
                                 )}
-                            </Grid>
-                            <div className="mb-3">
                               {plant_details.acf.characteristics.leaf_description && (
-                                <div >
-                                  <p>
-                                    <strong>Leaves Description: &nbsp;</strong>
-                                  </p>
-                                  <div className="rtc-content">
+                                <Grid item xs={12} sm={12} md={12} lg={12} >
+                                  <strong>Leaves Description: &nbsp;</strong>
+                                  <div className="desc-content">
                                     {ReactHtmlParser(plant_details.acf.characteristics.leaf_description)}
                                   </div>
-                                </div>
+                                </Grid>
                               )}
-                            </div>
+                            </Grid>
                           </div>
                         </div>
                       </div>
                     </div>}
 
                   {/* SPORES */}
-                  {(router.query.type == "Fern" && (plant_details.acf.characteristics.spore_description || plant_details.acf.characteristics.spore_location.length !== 0 ||
+                  {(plant_details.acf.plant_type == "Fern" && (plant_details.acf.characteristics.spore_description || plant_details.acf.characteristics.spore_location.length !== 0 ||
                     plant_details.acf.characteristics.spore_shape.length !== 0 || plant_details.acf.characteristics.spore_covering.length !== 0 ||
                     plant_details.acf.characteristics.spore_under_leaf.length !== 0)) && (
                       <div className="accordion mb-3" id="accordion3">
@@ -1113,9 +1111,11 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                                   )}
 
                                 {plant_details.acf.characteristics.spore_description && (
-                                  <Grid item xs={12} sm={12} md={6} lg={6} >
+                                  <Grid item xs={12} sm={12} md={12} lg={12} >
                                     <strong>Spore Description: &nbsp;</strong>
-                                    {ReactHtmlParser(plant_details.acf.characteristics.spore_description)}
+                                    <div className="desc-content">
+                                      {ReactHtmlParser(plant_details.acf.characteristics.spore_description)}
+                                    </div>
                                   </Grid>
                                 )}
                               </Grid>
@@ -1134,7 +1134,7 @@ const PlantSpeciesDetails = ({ plant_details }) => {
                     </div>
                   )}
                   {/* FRUITS */}
-                  {(router.query.type !== "Fern" && (plant_details.acf.characteristics.fruit_type.length !== 0 || plant_details.acf.characteristics.fruit_length ||
+                  {(plant_details.acf.plant_type !== "Fern" && (plant_details.acf.characteristics.fruit_type.length !== 0 || plant_details.acf.characteristics.fruit_length ||
                     plant_details.acf.characteristics.fruit_color.length !== 0 || plant_details.acf.characteristics.seed_dispersal)) && (
                       <div className="accordion mb-3" id="accordion3">
                         <div className="accordion-item">
@@ -1512,6 +1512,13 @@ const PlantSpeciesDetails = ({ plant_details }) => {
           background-color: #f6f7f9;
           padding: 15px 20px;
           border-radius: 10px;
+          font-size: 15px;
+        }
+        .desc-content {
+          background-color: #f6f7f9;
+          padding: 15px 20px;
+          border-radius: 10px;
+          margin-top: 8px;
           font-size: 15px;
         }
         .side-bar {
